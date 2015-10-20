@@ -1,0 +1,21 @@
+{
+  "name": "sctPlugin",
+  "version": "0.0.0",
+  "authors": [
+    "mic1028002@gmail.com"
+  ],
+  "description": "scott's collection of angularJS's helper.",
+  "main": "",
+  "moduleType": [],
+  "keywords": [
+    "sct"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "dependencies": {
+    "angular": "~1.3.16"
+  },
+  "devDependencies": {
+    "angular": "~1.3.16"
+  }
+}
