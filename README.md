@@ -24,7 +24,7 @@ angular.module('yourApp', [
     ])
 ~~~
 
-## Directive
+## Directives of Helper
 * shadowDom
   * ShadowDom Replace Directive;
     ex: < shadow-dom >test< /shandow-dom >
