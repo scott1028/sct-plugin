@@ -6,6 +6,7 @@ angular.module('sctPlugin.Directives')
 .directive('fileModel', ['$parse',
     function($parse) {
         // refer to http://uncorkedstudios.com/blog/multipartformdata-file-upload-with-angularjs
+        console.debug('ex: <input class="input_file hidden" id="input_file" type="file" file-model="inputFile">');
         return {
             restrict: 'A',
             link: function(scope, element, attrs) {
