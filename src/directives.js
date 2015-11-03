@@ -164,7 +164,7 @@ angular.module('sctPlugin.Directives', [])
     return {
         replace: false,
         restrict: 'E',
-        template: 'paginator.html',
+        templateUrl: 'paginator.html',
         link: function($scope, element, attrs, ngModelCtrl){
             // API variables
             // $scope.total_count: count items(*)
