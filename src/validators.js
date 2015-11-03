@@ -1,5 +1,5 @@
 'use strict';
-angular.module('ssdWebClientApp.Directives')
+angular.module('sctPlugin.Directives')
 
 
 // yyyy-dd-mm
