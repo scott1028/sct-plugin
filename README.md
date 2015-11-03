@@ -12,6 +12,18 @@ $ bower install https://github.com/scott1028/sct-plugin.git
 <script src="/components/sctPlugin/src/validators.js"></script>
 ~~~
 
+~~~
+angular.module('yourApp', [
+           ...
+        'ngCookies',
+        'ngResource',
+        'ngRoute',
+        'ngAnimate',
+           ...
+        'sctPlugin.Directives'
+    ])
+~~~
+
 ## Directive
 * shadowDom
   * ShadowDom Replace Directive;
