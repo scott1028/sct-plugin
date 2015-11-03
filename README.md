@@ -15,11 +15,11 @@ $ bower install https://github.com/scott1028/sct-plugin.git
 ## Directive
 * shadowDom
   * ShadowDom Replace Directive;
-    ex: <shadow-dom>test</shandow-dom>
+    ex: < shadow-dom>test</shandow-dom >
 
 * draggable
   * 拖曳附加 Directive
-  * ex: <div draggable></div>
+  * ex: < div draggable></div >
 
 * ngModelOnblur
   * 將 ngModel's ChangeValue 程序改為 onblur 觸發。
