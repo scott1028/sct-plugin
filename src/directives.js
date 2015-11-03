@@ -313,11 +313,9 @@ angular.module('sctPlugin.Directives', [])
         '            .page-selector .col-md-2 {' +
         '                float: right;' +
         '            }' +
-
         '            .page-selector .col-md-6 {' +
         '                float: left;' +
         '            }' +
-
         '            .pull-right[ng-show="showPageSizer"] {' +
         '                top: -2px!important;' +
         '                float: none!important;' +
