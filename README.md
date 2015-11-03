@@ -57,9 +57,9 @@ angular.module('yourApp', [
 
 * inputPattern
   * 輸入的字元限制器。ex: < ... input-pattern="(?:[0-9\.])" ... />
-  * 產生分頁 Toolbar，會自動在 Console 產生 API 說明。
+  * 會自動在 Console 產生 API 說明。
 
 * blurPattern
   * 輸入完畢的時候要 blur 時的檢查字元限制器。ex: < ... blur-pattern="^(?:[0-9]*)(?:[0-9]+?\.)*(?:[0-9]+)$|^\d$|^$" ... />
-  * 產生分頁 Toolbar，會自動在 Console 產生 API 說明。
+  * 會自動在 Console 產生 API 說明。
 
