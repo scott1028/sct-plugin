@@ -6,6 +6,9 @@ angular.module('sctPlugin', [])
     .directive("sortable", function() {
 
         console.debug('sortable API: <th ng-click="sortBy.handler(\'id\', dataList)">ID</th>');
+        console.debug('\tMaybe you will need a reset status method to reset:');
+        console.debug('\t\t$(\'[sortable]\').scope().flag = null');
+        console.debug('\t\t$(\'[sortable]\').scope().lastTargetField = null');
 
         return {
             restrict: "A",
