@@ -1,5 +1,5 @@
 'use strict';
-angular.module('sctPlugin.Directives', [])
+angular.module('sctPlugin.Directives')
 
 
 //
