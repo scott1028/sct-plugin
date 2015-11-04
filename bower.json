@@ -5,7 +5,7 @@
     "mic1028002@gmail.com"
   ],
   "description": "scott's collection of angularJS's helper.",
-  "main": "",
+  "main": "utils.json",
   "moduleType": [],
   "keywords": [
     "sct"
