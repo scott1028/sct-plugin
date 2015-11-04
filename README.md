@@ -1,5 +1,7 @@
 # sct-plugin
 
+- 手刻 UI 常用的 Helper Func 集合。
+
 ## Installation
 
 ~~~
