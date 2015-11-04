@@ -23,7 +23,7 @@ angular.module('yourApp', [
         'ngRoute',
         'ngAnimate',
            ...
-        'sctPlugin.Directives'
+        'sctPlugin'
     ])
 ~~~
 
