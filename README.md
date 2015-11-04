@@ -68,6 +68,10 @@ angular.module('yourApp', [
   * 自動產生 Ajaxing Animation 動畫並且 Block 該區塊。
   * Target DOM 必須要可以包含一個 Div 的節點，例如 Table 就不行。
 
+* sortable
+  * sortBy.handler($field, $arrayPointer): 搭配 ngClick 做 sorting Action。
+  * sortBy.displayIcon($field): 透過 sorting Action 得到目前排序 Desc/ASC Flag
+
 # Testing
 
 ~~~
