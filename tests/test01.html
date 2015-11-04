@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body ng-app="test01">
+    <script src="../bower_components/jquery/dist/jquery.js"></script>
+    <script src="../bower_components/angular/angular.js"></script>
+    <script src="../src/utils.js"></script>
+    <script src="../src/formatters.js"></script>
+    <script src="../src/validators.js"></script>
+    <script src="../src/directives.js"></script>
+    <script>
+        angular.module('test01', [
+            'sctPlugin'
+        ])
+        .controller('testGrid', ['$rootScope', '$scope', function($rootScope, $scope){
+
+            $scope.dataList1 = [
+                {id: 1, value: 100},
+                {id: 2, value: 50},
+                {id: 3, value: 75},
+                {id: 4, value: 10},
+                {id: 5, value: 33},
+            ];
+
+            $scope.dataList2 = [
+                {id: 6, value: 'A'},
+                {id: 7, value: 'B'},
+                {id: 8, value: 'D'},
+                {id: 9, value: 'E'},
+                {id: 10, value: 'C'},
+            ];
+        }])
+        .controller('testAjaxing', ['$rootScope', '$scope', '$timeout', function($rootScope, $scope, $timeout){
+            $scope.ajaxing = false;
+
+            $scope.submit = function(){
+                $scope.ajaxing = true;
+                $timeout(function(){
+                    $scope.ajaxing = false;
+                }, 2000);
+            };
+        }]) 
+        ;
+    </script>
+    <div class="viewport">
+        <div ng-controller="testGrid">
+            <table sortable border="1" style="table-layout: fixed; min-width: 200px; text-align: center; float: left;">
+                <tr>
+                    <th ng-click="sortBy.handler('id', dataList1)">ID {{ sortBy.displayIcon('id') }}</th>
+                    <th ng-click="sortBy.handler('value', dataList1)">Value {{ sortBy.displayIcon('value') }}</th>
+                </tr>
+                <tr ng-repeat="item in dataList1 track by item.id">
+                    <td>{{ item.id }}</td>
+                    <td>{{ item.value }}</td>
+                </tr>
+            </table>
+            <table sortable border="1" style="table-layout: fixed; min-width: 200px; text-align: center;">
+                <tr>
+                    <th ng-click="sortBy.handler('id', dataList2)">ID {{ sortBy.displayIcon('id') }}</th>
+                    <th ng-click="sortBy.handler('value', dataList2)">Value {{ sortBy.displayIcon('value') }}</th>
+                </tr>
+                <tr ng-repeat="item in dataList2 track by item.id">
+                    <td>{{ item.id }}</td>
+                    <td>{{ item.value }}</td>
+                </tr>
+            </table>
+            <div style="clear: both;"></div>
+        </div>
+        <hr />
+        <div ng-controller="testAjaxing">
+            <div ajaxing-block-by="ajaxing">
+                test content
+            </div>
+            <button ng-click="submit();">Submit by Ajaxing Mode</button>
+        </div>
+        <hr />
+    </div>
+    <style>
+        th {
+            cursor: pointer;
+            background-color: silver;
+        }
+        .ajax_loading {
+            background-color: silver!important;
+            opacity: 0.5;
+        };
+    </style>
+</body>
+</html>

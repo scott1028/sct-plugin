@@ -7,7 +7,7 @@ $ bower install https://github.com/scott1028/sct-plugin.git
 ~~~
 
 ~~~
-<script src="/components/sctPlugin/src/main.js"></script>
+<script src="/components/sctPlugin/src/utils.js"></script>
 <script src="/components/sctPlugin/src/directives.js"></script>
 <script src="/components/sctPlugin/src/formatters.js"></script>
 <script src="/components/sctPlugin/src/validators.js"></script>
@@ -67,3 +67,11 @@ angular.module('yourApp', [
 * ajaxingBlockBy
   * 自動產生 Ajaxing Animation 動畫並且 Block 該區塊。
   * Target DOM 必須要可以包含一個 Div 的節點，例如 Table 就不行。
+
+# Testing
+
+~~~
+$ bower install
+$ http-server
+  ( open http://127.0.0.1:8081/tests/test01.html )
+~~~
