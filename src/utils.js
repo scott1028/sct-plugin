@@ -9,6 +9,13 @@ angular.module('sctPlugin', [])
         console.debug('\tMaybe you will need a reset status method to reset:');
         console.debug('\t\t$(\'[sortable]\').scope().sortBy.flag = null');
         console.debug('\t\t$(\'[sortable]\').scope().sortBy.lastTargetField = null');
+        console.debug('\tSample:');
+        console.debug([
+            '\t\tvar resetSortable = function(){\n',
+            '\t\t    var scope = $(\'[sortable]\').scope();\n',
+            '\t\t    scope.sortBy.flag = null;\n',
+            '\t\t    scope.sortBy.lastTargetField = null;\n',
+            '\t\t};'].join(''));
 
         return {
             restrict: "A",
