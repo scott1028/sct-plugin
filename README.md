@@ -37,7 +37,7 @@ angular.module('yourApp', [
   * 將 ngModel's ChangeValue 程序改為 onblur 觸發。
  
 * newMaxlength
-  * 取代 HTML 原生 maxlenght 因為在讀取資料的時候，會讓 AngularJS 的 ngModel 運作不正常。
+  * 取代 HTML 原生 maxlength 因為在讀取資料的時候，會讓 AngularJS 的 ngModel 運作不正常。
 
 * staticInclude
   * 以不產生 New Scope 的條件下 include Template。
