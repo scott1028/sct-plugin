@@ -26,6 +26,7 @@ angular.module('yourApp', [
 ~~~
 
 ## Directives of Helper
+
 * shadowDom
   * ShadowDom Replace Directive;
     ex: < shadow-dom >test< /shandow-dom >
@@ -70,7 +71,8 @@ angular.module('yourApp', [
 
 * sortable
   * sortBy.handler($field, $arrayPointer): 搭配 ngClick 做 sorting Action。
-  * sortBy.displayIcon($field): 透過 sorting Action 得到目前排序 Desc/ASC Flag
+  * sortBy.displayIcon($field): 透過 sorting Action 得到目前排序 Desc/ASC Flag。
+  * 實際使用部份看 tests/test01.html。
 
 # Testing
 
