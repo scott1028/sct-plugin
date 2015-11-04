@@ -332,7 +332,7 @@ angular.module('sctPlugin')
         },
         link: function (scope, el, attrs) {
             console.debug('ajaxingBlockBy API: < ... ajaxing-block-by="ajaxing" ... >');
-            console.debug('\tYou must define CSS Classname:ajaxing_loading that include *.gif ajaxing animation.');
+            console.debug('\tYou must define CSS Classname:ajax_loading that include *.gif ajaxing animation.');
             console.debug(['\tSample:',
                 '\t.ajax_loading {\n',
                 '\t    min-height: 300px;\n',
