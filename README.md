@@ -63,3 +63,5 @@ angular.module('yourApp', [
   * 輸入完畢的時候要 blur 時的檢查字元限制器。ex: < ... blur-pattern="^(?:[0-9]*)(?:[0-9]+?\.)*(?:[0-9]+)$|^\d$|^$" ... />
   * 會自動在 Console 產生 API 說明。
 
+* ajaxingBlockBy
+  * 自動產生 Ajaxing Animation 動畫並且 Block 該區塊。

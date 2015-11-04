@@ -324,4 +324,50 @@ angular.module('sctPlugin.Directives', [])
         '    </style>' +
         '</div>');
 }])
+.directive('ajaxingBlockBy', function($compile) {
+    return {
+        restrict: 'A',
+        scope: {
+            ajaxing: '=ajaxingBlockBy'
+        },
+        link: function (scope, el, attrs) {
+            console.debug('ajaxingBlockBy API: < ... ajaxing-block-by="ajaxing" ... >');
+            console.debug('\tYou must define CSS Classname:ajaxing_loading that include *.gif ajaxing animation.');
+            console.debug(['\tSample:',
+                '\t.ajax_loading {\n',
+                '\t    min-height: 300px;\n',
+                '\t    max-height: 300px;\n',
+                '\t    overflow-x: hidden;\n',
+                '\t    background: url("/images/ajaxing-text.gif") left no-repeat;\n',
+                '\t    background-size: 100px 100px;\n',
+                '\t    background-position: center 50%;\n',
+                '\t    overflow-y: hidden;\n',
+                '\t    opacity: 0.7;\n',
+                '\t}'].join(''));
+
+            //
+            if(!el.attr('ajaxing-block-by')){
+                throw new Error('No ngModel Value in < ... ajaxing-block-by=? ... />');
+            };
+
+            //
+            if(el.css('position') === 'static')
+                el.css('position', 'relative');
+
+            var dom = angular.element([
+                '<div ng-show="ajaxing" class="ajax_loading" style="',
+                    'top: 0px;',
+                    'height: 100%;',
+                    'max-height: 100%;',
+                    'width: 100%;',
+                    'position: absolute;',
+                    'background-color: white;',
+                    'box-shadow: 1px 1px 3px #999999;',
+                    'box-shadow: none;">',
+                '</div>'].join(''));
+            $compile(dom)(scope);
+            el.append(dom);
+        }
+    };
+})
 ;
