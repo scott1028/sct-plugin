@@ -22,6 +22,10 @@ angular.module('sctPlugin', [])
             replace: true,
             link: function($scope, elem, attrs, ngModelCtrl) {
                 $scope.sortBy = {
+                    resetFlag: function(){
+                        this.flag = null;
+                        this.lastTargetField = null;
+                    },
                     handler: function(targetField, store){
                         if(this.flag === null) this.flag = 1;
                         if(this.lastTargetField === null) this.lastTargetField = targetField;
