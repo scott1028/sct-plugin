@@ -9,7 +9,7 @@ angular.module('sctPlugin', [])
         console.debug('\tMaybe you will need a reset status method to reset:');
         console.debug('\t\t$(\'[sortable]\').scope().sortBy.flag = null');
         console.debug('\t\t$(\'[sortable]\').scope().sortBy.lastTargetField = null');
-        console.debug('\t\t$(\'[sortable]\').scope().resetSortedFlag();  // To invoke it when you want to initialize component.');
+        console.debug('\t\t$(\'[sortable]\').scope().sortBy.resetSortedFlag();  // To invoke it when you want to initialize component.');
         console.debug('\tSample:');
         console.debug([
             '\t\tvar resetSortable = function(){\n',
