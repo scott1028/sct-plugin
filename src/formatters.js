@@ -26,11 +26,21 @@ angular.module('sctPlugin')
     return {
         require: 'ngModel',
         link: function(scope, elem, attrs, ctrl) {
+            // 當值改變的時候觸發
             ctrl.$parsers.push(function(value) {
                 if (value === 0)
                     return 0;
+                var newValue = parseFloat(value);
+                if(isNaN(newValue)) newValue = null;
+                return newValue;
+            });
 
-                return parseFloat(value || '');
+            // Ajax 載入 Model 時候就會觸發
+            ctrl.$formatters.push(function(value) {
+                var newValue = parseFloat(value);
+                if(isNaN(newValue)) newValue = null;
+                ctrl.$setViewValue(newValue);
+                return newValue;
             });
         }
     };
