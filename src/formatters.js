@@ -164,4 +164,65 @@ angular.module('sctPlugin')
         }
     }
 })
+//
+.directive('newMaxValue', ['$parse',
+    function($parse) {
+        // refer to http://uncorkedstudios.com/blog/multipartformdata-file-upload-with-angularjs
+        console.debug('newMaxValue Directive: work with input[text] well.');
+        console.debug('\tex: <input class="input_file hidden" id="input_file" type="file" new-max-value="100">');
+        return {
+            restrict: 'A',
+            link: function(scope, element, attrs) {
+
+                //
+                var model = $parse(attrs.ngModel);
+                var modelSetter = model.assign;
+
+                //
+                var targetValue = element.attr('new-max-value');
+                if(!targetValue){
+                    throw new Error('No Value in < ... new-max-value=? ... />');
+                }
+
+                element.bind('input', function(e){
+                    if(parseFloat(e.target.value) >= parseFloat(targetValue)){
+                        modelSetter(scope, parseFloat(targetValue));
+                        scope.$apply();
+                    };
+                });
+            }
+        };
+    }
+])
+//
+.directive('newMinValue', ['$parse',
+    function($parse) {
+        // refer to http://uncorkedstudios.com/blog/multipartformdata-file-upload-with-angularjs
+        console.debug('newMinValue Directive: work with input[text] well.');
+        console.debug('\tex: <input class="input_file hidden" id="input_file" type="file" new-min-value="100">');
+        return {
+            restrict: 'A',
+            link: function(scope, element, attrs) {
+
+                //
+                var model = $parse(attrs.ngModel);
+                var modelSetter = model.assign;
+
+                //
+                var targetValue = element.attr('new-min-value');
+                if(!targetValue){
+                    throw new Error('No Value in < ... new-min-value=? ... />');
+                }
+
+                element.bind('input', function(e){
+                    if(parseFloat(e.target.value) <= parseFloat(targetValue)){
+                        modelSetter(scope, parseFloat(targetValue));
+                        scope.$apply();
+                    }
+                });
+            }
+        };
+    }
+])
+;
 ;
