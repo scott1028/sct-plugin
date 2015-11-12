@@ -135,7 +135,8 @@ angular.module('sctPlugin')
         restrict: 'A',
         link: function(scope, elm, attrs, ctrl) {
             console.debug('BlurPattern Directive API:');
-            console.debug('\tex: <input blur-pattern="([0-9]|\.)"');
+            console.debug('\tex: <input blur-pattern="([0-9]|\.)" ...');
+            console.debug('\tex: <input blur-pattern="([0-9]|\.)" blur-error-message="test message" ...');
             console.debug('\n');
 
 
@@ -146,9 +147,17 @@ angular.module('sctPlugin')
 
 
             //
+            var message = '';
+            if(elm.attr('blur-error-message')){
+                message = elm.attr('blur-error-message');
+            };
+
+
+            //
             elm.blur(function(e) {
                 if(e.target.value.match(new RegExp(e.target.getAttribute('blur-pattern'))) === null){
-                    alert('當前輸入：' + e.target.value + '格式不符！');
+                    if(message !== '') alert(message);
+                    else alert('當前輸入：' + e.target.value + '格式不符！');
                     angular.element(e.target).focus();
                 };
             });
