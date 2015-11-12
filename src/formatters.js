@@ -22,6 +22,36 @@ angular.module('sctPlugin')
     }
 ])
 //
+.directive('newMaxlength', function() {
+    return {
+        require: 'ngModel',
+        link: function (scope, element, attrs, ngModelCtrl) {
+            console.debug('newMaxlength API: < ... new-maxlength="$int"... />');
+            var maxlength = Number(attrs.newMaxlength);
+            function fromUser(text) {
+                if (text.toString().length > maxlength) {
+                    var transformedInput = text.substring(0, maxlength);
+                    ngModelCtrl.$setViewValue(transformedInput);
+                    ngModelCtrl.$render();
+                    return transformedInput;
+                }
+                return text;
+            };
+            ngModelCtrl.$parsers.push(fromUser);
+        }
+    };
+})
+//
+.directive('maxlength', function() {
+    return {
+        require: 'ngModel',
+        link: function (scope, element, attrs, ngModelCtrl) {
+            console.debug('Please use new-maxlength instead of native maxlength.');
+            throw new Error('Do not use maxlength for ngModel.');
+        }
+    };
+})
+//
 .directive('toNumber', function() {
     return {
         require: 'ngModel',

@@ -107,36 +107,6 @@ angular.module('sctPlugin')
     };
 })
 //
-.directive('newMaxlength', function() {
-    return {
-        require: 'ngModel',
-        link: function (scope, element, attrs, ngModelCtrl) {
-            console.debug('newMaxlength API: < ... new-maxlength="$int"... />');
-            var maxlength = Number(attrs.newMaxlength);
-            function fromUser(text) {
-                if (text.length > maxlength) {
-                    var transformedInput = text.substring(0, maxlength);
-                    ngModelCtrl.$setViewValue(transformedInput);
-                    ngModelCtrl.$render();
-                    return transformedInput;
-                }
-                return text;
-            };
-            ngModelCtrl.$parsers.push(fromUser);
-        }
-    };
-})
-//
-.directive('maxlength', function() {
-    return {
-        require: 'ngModel',
-        link: function (scope, element, attrs, ngModelCtrl) {
-            console.debug('Please use new-maxlength instead of native maxlength.');
-            throw new Error('Do not use maxlength for ngModel.');
-        }
-    };
-})
-//
 .directive('staticInclude', function($http, $templateCache, $compile) {
 
     console.debug('< …  static-include="/xxx/test.html" … >: To Include Template without Create new Scope.');
