@@ -214,7 +214,7 @@ angular.module('sctPlugin')
                     throw new Error('No Value in < ... new-max-value=? ... />');
                 }
 
-                element.bind('input', function(e){
+                element.bind('change', function(e){
                     if(parseFloat(e.target.value) >= parseFloat(targetValue)){
                         modelSetter(scope, parseFloat(targetValue));
                         scope.$apply();
@@ -244,7 +244,7 @@ angular.module('sctPlugin')
                     throw new Error('No Value in < ... new-min-value=? ... />');
                 }
 
-                element.bind('input', function(e){
+                element.bind('change', function(e){
                     if(parseFloat(e.target.value) <= parseFloat(targetValue)){
                         modelSetter(scope, parseFloat(targetValue));
                         scope.$apply();
