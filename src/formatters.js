@@ -201,12 +201,9 @@ angular.module('sctPlugin')
         console.debug('newMaxValue Directive: work with input[text] well.');
         console.debug('\tex: <input class="input_file hidden" id="input_file" type="file" new-max-value="100">');
         return {
+            require: 'ngModel',
             restrict: 'A',
-            link: function(scope, element, attrs) {
-
-                //
-                var model = $parse(attrs.ngModel);
-                var modelSetter = model.assign;
+            link: function(scope, element, attrs, ngModelCtrl) {
 
                 //
                 var targetValue = element.attr('new-max-value');
@@ -216,9 +213,13 @@ angular.module('sctPlugin')
 
                 element.bind('change', function(e){
                     if(parseFloat(e.target.value) >= parseFloat(targetValue)){
-                        modelSetter(scope, parseFloat(targetValue));
-                        scope.$apply();
+                        ngModelCtrl.$setViewValue(parseFloat(targetValue));
+                    }
+                    else{
+                        ngModelCtrl.$setViewValue(parseFloat(e.target.value));
                     };
+                    ngModelCtrl.$render();
+                    scope.$apply();
                 });
             }
         };
@@ -231,12 +232,9 @@ angular.module('sctPlugin')
         console.debug('newMinValue Directive: work with input[text] well.');
         console.debug('\tex: <input class="input_file hidden" id="input_file" type="file" new-min-value="100">');
         return {
+            require: 'ngModel',
             restrict: 'A',
-            link: function(scope, element, attrs) {
-
-                //
-                var model = $parse(attrs.ngModel);
-                var modelSetter = model.assign;
+            link: function(scope, element, attrs, ngModelCtrl) {
 
                 //
                 var targetValue = element.attr('new-min-value');
@@ -246,13 +244,16 @@ angular.module('sctPlugin')
 
                 element.bind('change', function(e){
                     if(parseFloat(e.target.value) <= parseFloat(targetValue)){
-                        modelSetter(scope, parseFloat(targetValue));
-                        scope.$apply();
+                        ngModelCtrl.$setViewValue(parseFloat(targetValue));
                     }
+                    else{
+                        ngModelCtrl.$setViewValue(parseFloat(e.target.value));
+                    };
+                    ngModelCtrl.$render();
+                    scope.$apply();
                 });
             }
         };
     }
 ])
-;
 ;
