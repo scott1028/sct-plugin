@@ -55,12 +55,13 @@ angular.module('sctPlugin')
 .directive('toNumber', function() {
     return {
         require: 'ngModel',
-        link: function(scope, elem, attrs, ctrl) {
-            ctrl.$parsers.push(function(value) {
-                if (value === 0)
-                    return 0;
-
-                return parseFloat(value || '');
+        link: function(scope, elem, attrs, ngModelCtrl) {
+            elem.bind('change', function(e){
+                var newValue = parseFloat(e.target.value);
+                if(isNaN(newValue)) newValue = null;
+                ngModelCtrl.$setViewValue(newValue);
+                ngModelCtrl.$render();
+                scope.$apply();
             });
         }
     };
