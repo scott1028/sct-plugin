@@ -236,13 +236,13 @@ angular.module('sctPlugin')
         '    <div style="line-height: 25px; margin: 5px;" onselectstart="return false;">' +
         '        <button' +
         '            class="glyphicon glyphicon-backward"' +
-        '            style="line-height: 25px; cursor: pointer; background-color: Transparent; border: none;"' +
+        '            style="top: 0px; line-height: 25px; cursor: pointer; background-color: Transparent; border: none;"' +
         '            ng-disabled="ajaxing"' +
         '            ng-click="current_page_no > 1 ? (current_page_no = parseInt(current_page_no) - 1) : current_page_no"></button>' +
         '        <input' +
         '            type="number"' +
         '            ng-model="current_page_no"' +
-        '            style="height: 29px; line-height: 25px; border-radius: 0px; width: 80px; text-align: center;"' +
+        '            style="font-size: 12pt; height: 29px; line-height: 25px; border-radius: 0px; width: 80px; text-align: center;"' +
         '            ng-blur="onblur()"' +
         '            max="100000"' +
         '            min="1"' +
@@ -250,7 +250,7 @@ angular.module('sctPlugin')
         '            ng-model-onblur />' +
         '        <button' +
         '            class="glyphicon glyphicon-forward"' +
-        '            style="line-height: 25px; cursor: pointer; background-color: Transparent; border: none;"' +
+        '            style="top: 0px; line-height: 25px; cursor: pointer; background-color: Transparent; border: none;"' +
         '            ng-disabled="ajaxing"' +
         '            ng-click="current_page_no < total_page ? (current_page_no = parseInt(current_page_no) + 1) : current_page_no"></button>' +
         '        <span style="text-align: right; height: 0px; line-height: 25px; position: relative; color: #157ab5;">Total: {{total_count}} 筆, Page 共: {{total_page}} 頁</span>' +
