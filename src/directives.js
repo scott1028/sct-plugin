@@ -242,7 +242,7 @@ angular.module('sctPlugin')
         '        <input' +
         '            type="number"' +
         '            ng-model="current_page_no"' +
-        '            style="height: 25px; border-radius: 0px; width: 80px; text-align: center;"' +
+        '            style="height: 29px; line-height: 25px; border-radius: 0px; width: 80px; text-align: center;"' +
         '            ng-blur="onblur()"' +
         '            max="100000"' +
         '            min="1"' +

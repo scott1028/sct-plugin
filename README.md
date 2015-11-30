@@ -52,7 +52,7 @@ angular.module('yourApp', [
   * ex: < div ng-include="..." ng-include-replace >< /div >
 
 * paginator
-  * 產生分頁 Toolbar，會自動在 Console 產生 API 說明。
+  * 產生分頁 Toolbar，會自動在 Console 產生 API 說明。(需要 Boostrap CSS 圖示)
   * ex: < paginator page-size="20,30,50" >< /paginator >
 
 * fileModel
