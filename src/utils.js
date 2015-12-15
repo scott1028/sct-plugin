@@ -3,7 +3,7 @@
 
 //
 angular.module('sctPlugin', [])
-    .run(function(){
+    .run(['$rootScope', function($rootScope){
         // ref: https://css-tricks.com/snippets/jquery/get-query-params-object/
         angular.element.extend({
             getQueryStringFromURL : function(key) {
@@ -14,7 +14,11 @@ angular.module('sctPlugin', [])
                     return angular.equals(result, {'': undefined}) ? {} : result;
             }
         });
-    })
+
+        $rootScope.debugger = function (params) {
+            debugger;
+        };
+    }])
     .directive("sortable", function() {
 
         console.debug('sortable API: <th ng-click="sortBy.handler(\'id\', dataList)">ID</th>');
