@@ -9,6 +9,7 @@ console.info('This Func need jQuery DatetimePicker or datetimePicker!');
 angular.module('sctPlugin.Helpers', [])
 //
 .directive("datepicker", function() {
+    console.debug('DatePicker by: https://jqueryui.com/');
     return {
         restrict: "A",
         require: "ngModel",
@@ -30,6 +31,7 @@ angular.module('sctPlugin.Helpers', [])
 })
 //
 .directive("datetimepicker", function() {
+    console.debug('DateTimePicker by: http://trentrichardson.com/examples/timepicker/');
     return {
         restrict: "A",
         require: "ngModel",
