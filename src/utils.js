@@ -18,6 +18,14 @@ angular.module('sctPlugin', [])
         $rootScope.debugger = function (params) {
             debugger;
         };
+
+        console.log('This need moment.js plugin');
+        console.log('<script src="/components/moment/moment.js"></script>');
+        console.log('<script src="/components/moment-timezone/builds/moment-timezone-with-data.js"></script>');
+        $rootScope.getCurrentDatetime = function (format, timezone) {
+            if (!timezone) timezone = 'Asia/Taipei';
+            return moment().tz(timezone).format(format);
+        };
     }])
     .directive("sortable", function() {
 
