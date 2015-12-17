@@ -25,7 +25,7 @@ angular.module('sctPlugin', [])
         console.log('CDN: https://cdnjs.com/libraries/moment.js/');
         console.log('CDN: https://cdnjs.com/libraries/moment-timezone/');
         console.log('Example#1: getCurrentDatetime(\'YYYY-MM-DD HH:mm:ss\')');
-        console.log('Example#2: getCurrentDatetime(\'YYYY-MM-DD HH:mm:ss\', \'Asia/Taipei'')');
+        console.log('Example#2: getCurrentDatetime(\'YYYY-MM-DD HH:mm:ss\', \'Asia/Taipei\')');
         $rootScope.getCurrentDatetime = function (format, timezone) {
             if (!timezone) timezone = 'Asia/Taipei';
             return moment().tz(timezone).format(format);
