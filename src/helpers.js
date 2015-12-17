@@ -32,6 +32,7 @@ angular.module('sctPlugin.Helpers', [])
 //
 .directive("datetimepicker", function() {
     console.debug('DateTimePicker by: http://trentrichardson.com/examples/timepicker/');
+    console.debug('DateTimePicker CDN by: https://cdnjs.com/libraries/jquery-timepicker');
     return {
         restrict: "A",
         require: "ngModel",
