@@ -38,13 +38,17 @@ angular.module('sctPlugin', [])
         console.debug('\t\t$(\'[sortable]\').scope().sortBy.flag = null');
         console.debug('\t\t$(\'[sortable]\').scope().sortBy.lastTargetField = null');
         console.debug('\t\t$(\'[sortable]\').scope().sortBy.resetSortedFlag();  // To invoke it when you want to initialize component.');
-        console.debug('\tSample:');
+        console.debug('\tSample for .resetSortedFlag():');
         console.debug([
             '\t\tvar resetSortable = function(){\n',
             '\t\t    var scope = $(\'[sortable]\').scope();\n',
             '\t\t    scope.sortBy.flag = null;\n',
             '\t\t    scope.sortBy.lastTargetField = null;\n',
             '\t\t};'].join(''));
+        console.debug([
+            '\t(*)Sorted Flag Display API Sample:\n',
+            '\t\t<span>{{ sortBy.displayIcon(\'master_id\') }}</span>'
+        ].join(''));
 
         return {
             restrict: "A",
