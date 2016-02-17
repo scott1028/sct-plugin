@@ -20,8 +20,10 @@
                 templateUrl: 'test02_cmp01.html',
                 scope: {
                     value: '=ngModel',  // two-way binding
-                    value2: '&',  // one-way binding, as a getter function to get value.
-                    value3: '&',  // one-way binding, as a getter function to get value.
+                    value2: '&',  // one-way binding, as a getter function to get value/func.
+                    value3: '&',  // one-way binding, as a getter function to get value/func.
+                    value4: '&',
+                    value5: '@',
                 },
                 link: function($scope, $element, $attrs, $controller){
                     // debugger;
@@ -47,7 +49,10 @@
         <test-ui
             ng-model="form.valueA"
             value2="form.valueB"
-            value3="echo"></test-ui>
+            value3="echo"
+            value4="form.valueB()"
+            value5="{{ form.valueB }}"
+            value6="{{ ::form.valueB }}"></test-ui>
     </div>
     <pre>
         Sample for Study AngularJS ngDirective scope & sub-ui relations.
