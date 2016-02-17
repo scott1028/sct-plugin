@@ -25,6 +25,7 @@
                     value4: '&',
                     value5: '@',
                     value6: '@',
+                    value7: '=',
                 },
                 link: function($scope, $element, $attrs, $controller){
                     // debugger;
@@ -39,6 +40,7 @@
 
             $scope.echo = function(){
                 console.info($scope.form);
+                console.info(this);
             };
         }])
         ;
@@ -53,7 +55,8 @@
             value3="echo"
             value4="form.valueB()"
             value5="{{ form.valueB }}"
-            value6="{{ ::form.valueB }}"></test-ui>
+            value6="{{ ::form.valueB }}"
+            value7="echo"></test-ui>
     </div>
     <pre>
         Sample for Study AngularJS ngDirective scope & sub-ui relations.
