@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body ng-app="test01">
+    <script src="../bower_components/jquery/dist/jquery.js"></script>
+    <script src="../bower_components/angular/angular.js"></script>
+    <script src="../src/utils.js"></script>
+    <script src="../src/formatters.js"></script>
+    <script src="../src/validators.js"></script>
+    <script src="../src/directives.js"></script>
+    <script>
+        angular.module('test01', [
+            'sctPlugin'
+        ])
+        .directive('testUi',function($compile,$timeout){
+            return {
+                replace: true,
+                templateUrl: 'test02_cmp01.html',
+                scope: {
+                    value: '=ngModel',  // two-way binding
+                    value2: '&',  // one-way binding, as a getter function to get value.
+                    value3: '&',  // one-way binding, as a getter function to get value.
+                },
+                link: function($scope, $element, $attrs, $controller){
+                    // debugger;
+                }
+            }
+        })
+        .controller('test02', ['$rootScope', '$scope', function($rootScope, $scope){
+            $scope.form = {
+                valueA: 1,
+                valueB: 2,
+            };
+
+            $scope.echo = function(){
+                console.info($scope.form);
+            };
+        }])
+        ;
+    </script>
+    <div ng-controller="test02">
+        <label>Outside Component:</label>
+        <input ng-model="form.valueA"></input>
+        <input ng-model="form.valueB"></input>
+        <test-ui
+            ng-model="form.valueA"
+            value2="form.valueB"
+            value3="echo"></test-ui>
+    </div>
+    <pre>
+        Sample for Study AngularJS ngDirective scope & sub-ui relations.
+    </pre>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+</body>
+</html>
