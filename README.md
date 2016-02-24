@@ -5,7 +5,7 @@
 ## Installation
 
 ~~~
-$ bower install https://github.com/scott1028/sct-plugin.git
+$ bower install https://repo.taisys.com/ssd/sct-plugin.git
 ~~~
 
 ~~~
