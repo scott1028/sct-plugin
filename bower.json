@@ -24,6 +24,6 @@
     "jqueryui-timepicker-addon": "^1.5.3",
     "moment-timezone": "~0.4.0",
     "ng-grid": "2.0.13",
-    "ngMask": "angular-mask#~3.0.16",
+    "ngMask": "angular-mask#~3.0.16"
   }
 }
