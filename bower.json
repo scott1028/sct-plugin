@@ -21,7 +21,7 @@
     "bootstrap": "3.0.3",
     "jquery": "2.1.0",
     "jquery-ui": "1.10.3",
-    "jqueryui-timepicker-addon": "~1.5.3",
+    "jqueryui-timepicker-addon": "^1.5.3",
     "moment-timezone": "~0.4.0",
     "ng-grid": "2.0.13",
     "ngMask": "angular-mask#~3.0.16",
