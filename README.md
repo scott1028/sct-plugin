@@ -5,7 +5,7 @@
 ## Installation
 
 ~~~
-$ bower install https://github.com/scott1028/sct-plugin.git
+$ bower install https://repo.taisys.com/ssd/sct-plugin.git
 ~~~
 
 ~~~
@@ -82,9 +82,13 @@ angular.module('yourApp', [
 $ bower install
 $ http-server
   ( open http://127.0.0.1:8081/tests/test01.html )
+<<<<<<< HEAD
 ~~~
 
 # Note
 
 * jQuery-UI provide DatePicker
 * jQuery-UI-Timepicker Addone provider TimePicker integration.
+=======
+~~~
+>>>>>>> b57d46fb7637e115e410820549295c434347632f
