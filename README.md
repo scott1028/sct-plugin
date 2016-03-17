@@ -88,4 +88,3 @@ $ http-server
 
 * jQuery-UI provide DatePicker
 * jQuery-UI-Timepicker Addone provider TimePicker integration.
-=======
