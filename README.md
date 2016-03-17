@@ -83,3 +83,8 @@ $ bower install
 $ http-server
   ( open http://127.0.0.1:8081/tests/test01.html )
 ~~~
+
+# Note
+
+* jQuery-UI provide DatePicker
+* jQuery-UI-Timepicker Addone provider TimePicker integration.
