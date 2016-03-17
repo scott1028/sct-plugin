@@ -3,7 +3,7 @@
 
 //
 angular.module('sctPlugin', ['sctPlugin.Helpers'])
-    .run(['$rootScope', function($rootScope){
+    .run(['$rootScope', '$location', function($rootScope, $location){
         // ref: https://css-tricks.com/snippets/jquery/get-query-params-object/
         angular.element.extend({
             getQueryStringFromURL : function(key) {
@@ -17,6 +17,34 @@ angular.module('sctPlugin', ['sctPlugin.Helpers'])
 
         $rootScope.debugger = function (params) {
             debugger;
+        };
+
+        // stop all ajax and go new URL Path
+        $rootScope.stopAndGo = function (uri) {
+            console.log('TargetURI:', uri);
+            //
+            if (uri !== null || uri !== undefined) {
+                console.log('Replace Before:', uri);
+                // noinspection SillyAssignmentJS
+                uri.toString()[0] === '#' ? uri = uri.toString().substring(1) : uri = uri;
+                console.log('Replace After:', uri);
+            }
+
+            // $location.url() has bug.....
+            // $location.url(uri);
+            // set a history URI
+            $rootScope.lastHashBag = location.hash;
+            $rootScope.lastURI = location.href;
+
+            // to new URI
+            // location.href = '#' + uri;
+            if(uri != 'login'){
+                //
+                console.log('Stop all ajax Request!');
+                stop();
+                console.log('Start to another URL:' + uri);
+            }
+            $location.url(uri);
         };
 
         console.log('This need moment.js plugin');
