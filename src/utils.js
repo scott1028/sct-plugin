@@ -2,7 +2,7 @@
 
 
 //
-angular.module('sctPlugin', [])
+angular.module('sctPlugin', ['sctPlugin.Helpers'])
     .run(['$rootScope', function($rootScope){
         // ref: https://css-tricks.com/snippets/jquery/get-query-params-object/
         angular.element.extend({
