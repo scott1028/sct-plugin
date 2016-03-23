@@ -346,7 +346,7 @@ angular.module('sctPlugin')
         '            ng-click="prev();"></button>' +
         '        <input' +
         '            type="number"' +
-        '            ng-model="current_page_no"' +
+        '            ng-model="currentPageNo"' +
         '            style="font-size: 12pt; height: 29px; line-height: 25px; border-radius: 0px; width: 80px; text-align: center;"' +
         '            ng-blur="page()"' +
         '            max="100000"' +
