@@ -317,7 +317,7 @@ angular.module('sctPlugin')
 
             // API Description
             console.debug('\
-                "<paginator />" API Description:\n\
+                "<paginator-custom />" API Description:\n\
                     $scope.totalCount: count items(*)\n\
                     $scope.totalPage: Math.ceil(data.meta.total_count / $scope.pageSize;\n\
                     $scope.currentPageNo: 1,2,3,4,5....total_page\n\
