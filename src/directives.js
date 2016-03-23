@@ -207,7 +207,19 @@ angular.module('sctPlugin')
             });
 
 
-                // re-pointer parent onblur method for callParent implement.
+            //
+            $scope.nextPage = function(){
+                $scope.current_page_no < $scope.total_page ? ($scope.current_page_no = parseInt($scope.current_page_no) + 1) : $scope.current_page_no;
+            };
+
+
+            //
+            $scope.prevPage = function(){
+                $scope.current_page_no > 1 ? ($scope.current_page_no = parseInt($scope.current_page_no) - 1) : $scope.current_page_no;
+            };
+
+
+            // re-pointer parent onblur method for callParent implement.
             if(angular.isFunction($scope.onblur)) $scope._onblur = $scope.onblur;
 
             $scope.onblur = function(){
@@ -238,7 +250,7 @@ angular.module('sctPlugin')
         '            class="glyphicon glyphicon-backward"' +
         '            style="top: 0px; line-height: 25px; cursor: pointer; background-color: Transparent; border: none;"' +
         '            ng-disabled="ajaxing"' +
-        '            ng-click="current_page_no > 1 ? (current_page_no = parseInt(current_page_no) - 1) : current_page_no"></button>' +
+        '            ng-click="prevPage();"></button>' +
         '        <input' +
         '            type="number"' +
         '            ng-model="current_page_no"' +
@@ -252,7 +264,7 @@ angular.module('sctPlugin')
         '            class="glyphicon glyphicon-forward"' +
         '            style="top: 0px; line-height: 25px; cursor: pointer; background-color: Transparent; border: none;"' +
         '            ng-disabled="ajaxing"' +
-        '            ng-click="current_page_no < total_page ? (current_page_no = parseInt(current_page_no) + 1) : current_page_no"></button>' +
+        '            ng-click="nextPage();"></button>' +
         '        <span style="text-align: right; height: 0px; line-height: 25px; position: relative; color: #157ab5;">Total: {{total_count}} 筆, Page 共: {{total_page}} 頁</span>' +
         '        <span ng-show="showPageSizer" class="pull-right" style="height: 29px!important; top: 1px; margin-left: 10px;">' +
         '            <button' +
