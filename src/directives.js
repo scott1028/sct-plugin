@@ -326,6 +326,11 @@ angular.module('sctPlugin')
                     $scope.page = function(pageNo){ ... }\n\
                     $scope.setPageSize(size)\n\
                 ');
+
+            // add pageSize support
+            attrs.pageSize = attrs.pageSize || '20';
+            $scope.pageSizeList = attrs.pageSize.split(',');
+            $scope.showPageSizer = $scope.pageSizeList.length > 1;
         }
     }
 })
