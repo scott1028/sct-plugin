@@ -324,8 +324,8 @@ angular.module('sctPlugin')
                     $scope.next = function(){ ... }\n\
                     $scope.prev = function(){ ... }\n\
                     $scope.page = function(pageNo){ ... }\n\
-                    $scope.setPageSize(size)\n\'
-                );
+                    $scope.setPageSize(size)\n\
+                ');
         }
     }
 })
