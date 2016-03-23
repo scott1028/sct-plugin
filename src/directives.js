@@ -298,7 +298,7 @@ angular.module('sctPlugin')
 
 //
 //
-.directive('paginator-custom', function() {
+.directive('paginatorCustom', function() {
     return {
         replace: false,
         restrict: 'E',
