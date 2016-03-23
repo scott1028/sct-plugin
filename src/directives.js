@@ -294,6 +294,109 @@ angular.module('sctPlugin')
         '    </style>' +
         '</div>');
 }])
+
+
+//
+//
+.directive('paginator-custom', function() {
+    return {
+        replace: false,
+        restrict: 'E',
+        templateUrl: 'paginator-custom.html',
+        link: function($scope, element, attrs, ngModelCtrl){
+            // API variables
+            // $scope.total_count: count items(*)
+            // $scope.total_page: Math.ceil(data.meta.total_count / $scope.pageSize;
+            // $scope.current_page_no: 1,2,3,4,5....total_page
+            // $scope.onblur = function(){ ... }
+            // $scope.ajaxing = true - can be invoked when init controller
+            // $scope.lock_ui() - can not be invoked when init controller
+            // $scope.unlock_ui() - can not be invoked when init controller
+            // $scope.$parent.setPageSize - parent tpl can implement this method with <paginator page-size="...." />
+
+
+            // API Description
+            console.debug('\
+                "<paginator />" API Description:\n\
+                    $scope.totalCount: count items(*)\n\
+                    $scope.totalPage: Math.ceil(data.meta.total_count / $scope.pageSize;\n\
+                    $scope.currentPageNo: 1,2,3,4,5....total_page\n\
+                    $scope.next = function(){ ... }\n\
+                    $scope.prev = function(){ ... }\n\
+                    $scope.page = function(pageNo){ ... }\n\
+                    $scope.setPageSize(size)\n\"
+                );
+        }
+    }
+})
+//
+.run(['$templateCache', function($templateCache){
+    $templateCache.put("paginator-custom.html",
+        '<div>' +
+        '    <div style="line-height: 25px; margin: 5px;" onselectstart="return false;">' +
+        '        <button' +
+        '            class="glyphicon glyphicon-backward"' +
+        '            style="top: 0px; line-height: 25px; cursor: pointer; background-color: Transparent; border: none;"' +
+        '            ng-disabled="ajaxing"' +
+        '            ng-click="prev();"></button>' +
+        '        <input' +
+        '            type="number"' +
+        '            ng-model="current_page_no"' +
+        '            style="font-size: 12pt; height: 29px; line-height: 25px; border-radius: 0px; width: 80px; text-align: center;"' +
+        '            ng-blur="page()"' +
+        '            max="100000"' +
+        '            min="1"' +
+        '            onmousewheel="return false;"' +
+        '            ng-model-onblur />' +
+        '        <button' +
+        '            class="glyphicon glyphicon-forward"' +
+        '            style="top: 0px; line-height: 25px; cursor: pointer; background-color: Transparent; border: none;"' +
+        '            ng-disabled="ajaxing"' +
+        '            ng-click="next();"></button>' +
+        '        <span style="text-align: right; height: 0px; line-height: 25px; position: relative; color: #157ab5;">Total: {{totalCount}} 筆, Page 共: {{totalPage}} 頁</span>' +
+        '        <span ng-show="showPageSizer" class="pull-right" style="height: 29px!important; top: 1px; margin-left: 10px;">' +
+        '            <button' +
+        '                class="btn btn-default"' +
+        '                ng-repeat="item in pageSizeList"' +
+        '                style="height: 25px!important; line-height: 25px!important; padding-top: 0px; padding-bottom: 0px;"' +
+        '                ng-click="setPageSize(item)"' +
+        '                ng-disabled="ajaxing">' +
+        '                {{item}}' +
+        '            </button>' +
+        '        </span>' +
+        '        <span class="ajaxing-min" style="margin-left: 20px; height: 10px; min-width: 200px; display: inline-block;" ng-show="ajaxing"></span>' +
+        '    </div>' +
+        '    <style type="text/css">' +
+        '        .glyphicon.glyphicon-backward:hover, .glyphicon.glyphicon-forward:hover {' +
+        '            color: #303030;' +
+        '            font-weight: bold;' +
+        '        }' +
+        '        button:disabled, button:disabled:hover {' +
+        '            color: silver!important;' +
+        '        }' +
+        '        input::-webkit-outer-spin-button,' +
+        '        input::-webkit-inner-spin-button {' +
+        '            -webkit-appearance: none;' +
+        '            margin: 0;' +
+        '        }' +
+        '        @media (max-width: 991px){' +
+        '            .page-selector .col-md-2 {' +
+        '                float: right;' +
+        '            }' +
+        '            .page-selector .col-md-6 {' +
+        '                float: left;' +
+        '            }' +
+        '            .pull-right[ng-show="showPageSizer"] {' +
+        '                top: -2px!important;' +
+        '                float: none!important;' +
+        '            }' +
+        '        }' +
+        '    </style>' +
+        '</div>');
+}])
+//
+
+
 .directive('ajaxingBlockBy', function($compile) {
     return {
         restrict: 'A',
