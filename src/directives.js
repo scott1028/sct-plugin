@@ -254,7 +254,7 @@ angular.module('sctPlugin')
         '            ng-disabled="ajaxing"' +
         '            ng-click="current_page_no < total_page ? (current_page_no = parseInt(current_page_no) + 1) : current_page_no"></button>' +
         '        <span style="text-align: right; height: 0px; line-height: 25px; position: relative; color: #157ab5;">Total: {{total_count}} 筆, Page 共: {{total_page}} 頁</span>' +
-        '        <span ng-show="showPageSizer" class="pull-right btn-group" style="height: 29px!important; top: 1px; margin-left: 10px;">' +
+        '        <span ng-show="showPageSizer" class="pull-right" style="height: 29px!important; top: 1px; margin-left: 10px;">' +
         '            <button' +
         '                class="btn btn-default"' +
         '                ng-repeat="item in pageSizeList"' +
