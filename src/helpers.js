@@ -14,7 +14,7 @@ angular.module('sctPlugin.Helpers', [])
     return {
         restrict: "A",
         link: function(scope, elem, attrs, ngModelCtrl) {
-            attrs.title = attrs.tipTitle;
+            elem.attr('title', attrs.tipTitle);
             elem.tooltip();
         }
     }
