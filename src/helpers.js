@@ -13,8 +13,11 @@ angular.module('sctPlugin.Helpers', [])
     console.debug('\t<a tip-title="your message" ></a>')
     return {
         restrict: "A",
+        scope: {
+            tipTitle: '='
+        },
         link: function(scope, elem, attrs, ngModelCtrl) {
-            elem.attr('title', attrs.tipTitle);
+            elem.attr('title', scope.tipTitle);
             elem.tooltip();
         }
     }
