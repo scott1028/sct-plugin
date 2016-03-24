@@ -8,6 +8,17 @@ console.info('This Func need jQuery DatetimePicker or datetimePicker!');
 //
 angular.module('sctPlugin.Helpers', [])
 //
+.directive("tipTitle", function() {
+    console.debug('dataToggle by: http://www.w3schools.com/bootstrap/bootstrap_tooltip.asp');
+    console.debug('\t<a tip-title title="your message" ></a>')
+    return {
+        restrict: "A",
+        link: function(scope, elem, attrs, ngModelCtrl) {
+            elem.tooltip();
+        }
+    }
+})
+//
 .directive("datepicker", function() {
     console.debug('DatePicker by: https://jqueryui.com/');
     return {
