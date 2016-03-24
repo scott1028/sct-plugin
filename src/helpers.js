@@ -10,10 +10,11 @@ angular.module('sctPlugin.Helpers', [])
 //
 .directive("tipTitle", function() {
     console.debug('dataToggle by: http://www.w3schools.com/bootstrap/bootstrap_tooltip.asp');
-    console.debug('\t<a tip-title title="your message" ></a>')
+    console.debug('\t<a tip-title="your message" ></a>')
     return {
         restrict: "A",
         link: function(scope, elem, attrs, ngModelCtrl) {
+            attrs.title = attrs.tipTitle;
             elem.tooltip();
         }
     }
