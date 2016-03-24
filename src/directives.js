@@ -437,7 +437,7 @@ angular.module('sctPlugin')
                 '\t}'].join(''));
 
             // set Reference
-            $rootScope = scope;
+            $rootScope.ajaxingScope = scope;
 
             //
             if(!el.attr('ajaxing-block-by')){
