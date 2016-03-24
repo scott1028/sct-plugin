@@ -414,7 +414,7 @@ angular.module('sctPlugin')
 //
 
 
-.directive('ajaxingBlockBy', function($compile. $rootScope) {
+.directive('ajaxingBlockBy', function($compile, $rootScope) {
     return {
         restrict: 'A',
         scope: {
