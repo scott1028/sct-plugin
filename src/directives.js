@@ -414,7 +414,7 @@ angular.module('sctPlugin')
 //
 
 
-.directive('ajaxingBlockBy', function($compile) {
+.directive('ajaxingBlockBy', function($compile. $rootScope) {
     return {
         restrict: 'A',
         scope: {
@@ -422,6 +422,7 @@ angular.module('sctPlugin')
         },
         link: function (scope, el, attrs) {
             console.debug('ajaxingBlockBy API: < ... ajaxing-block-by="ajaxing" ... >');
+            console.debug('\tSet a $rootScope.ajaxingScope = $scope as a reference.');
             console.debug('\tYou must define CSS Classname:ajax_loading that include *.gif ajaxing animation.');
             console.debug(['\tSample:',
                 '\t.ajax_loading {\n',
@@ -434,6 +435,9 @@ angular.module('sctPlugin')
                 '\t    overflow-y: hidden;\n',
                 '\t    opacity: 0.7;\n',
                 '\t}'].join(''));
+
+            // set Reference
+            $rootScope = scope;
 
             //
             if(!el.attr('ajaxing-block-by')){
