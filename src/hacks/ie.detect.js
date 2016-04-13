@@ -20,3 +20,10 @@ function msieversion() {
 function stopFunctionForIE(){
     document.execCommand('Stop');
 }
+
+console.debug('\
+\t// Detect IE then replace stop Function.\n\
+\tif(msieversion()){\n\
+\t    window.stop = stopFunctionForIE;\n\
+\t}\n\
+');
