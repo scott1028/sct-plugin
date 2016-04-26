@@ -1,5 +1,25 @@
 'use strict';
 
+var PaginatorWatchForAngularJS = function($scope, pageToFunc){
+    return {
+        disable: null,
+        enable: function(){
+            $scope.current_page_no = 1;
+            this.disable = $scope.$watch('current_page_no', function(newValue, oldValue){
+                if(newValue === oldValue) return;
+                console.log(newValue);
+                if(!pageToFunc) throw new Error('Implement your Ajax Service .page(newValue)');
+                pageToFunc(newValue);
+                // ex: engineerCosGenService.engineerCos.page(newValue);
+            });
+        },
+        reset: function(){
+            this.disable();
+            this.enable();
+        }
+    };
+};
+
 var PaginatorFuncPrototype = function($root){
     return {
         lastQuery: {

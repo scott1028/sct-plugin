@@ -54,3 +54,22 @@ PaginatorFuncPrototype 使用說明 & 範例：
             $scope.total_page = pageInfo.totalPage;
         });
 ```
+
+#### 把翻頁監聽包裝起來
+```
+var paginatorWatch = {
+    disable: null,
+    enable: function(){
+        $scope.current_page_no = 1;
+        this.disable = $scope.$watch('current_page_no', function(newValue, oldValue){
+            if(newValue === oldValue) return;
+            console.log(newValue);
+            engineerCosGenService.engineerCos.page(newValue);
+        });
+    },
+    reset: function(){
+        this.disable();
+        this.enable();
+    }
+};
+```
