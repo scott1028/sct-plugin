@@ -8,9 +8,13 @@ var PaginatorWatchForAngularJS = function($scope, pageToFunc){
             this.disable = $scope.$watch('current_page_no', function(newValue, oldValue){
                 if(newValue === oldValue) return;
                 console.log(newValue);
-                if(!pageToFunc) throw new Error('Implement your Ajax Service .page(newValue)');
-                pageToFunc(newValue);
-                // ex: engineerCosGenService.engineerCos.page(newValue);
+                if(!pageToFunc || !pageToFunc.page) throw new Error('Implement your Ajax Service .page(newValue)');
+                pageToFunc.page(newValue);
+                /*
+                # In ngController:
+                    var paginWathcer = PaginatorWatchForAngularJS($scope, userMgmService.getUsers);
+                    paginWathcer.enable();
+                */
             });
         },
         reset: function(){
