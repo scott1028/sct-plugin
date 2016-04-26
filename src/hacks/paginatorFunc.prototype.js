@@ -1,6 +1,6 @@
 'use strict';
 
-var PaginatorWatchForAngularJS = function($scope, pageToFunc){
+var PaginatorWatchForAngularJS = function($scope, pageToFunCallback){
     return {
         disable: null,
         enable: function(){
@@ -8,11 +8,14 @@ var PaginatorWatchForAngularJS = function($scope, pageToFunc){
             this.disable = $scope.$watch('current_page_no', function(newValue, oldValue){
                 if(newValue === oldValue) return;
                 console.log(newValue);
-                if(!pageToFunc || !pageToFunc.page) throw new Error('Implement your Ajax Service .page(newValue)');
-                pageToFunc.page(newValue);
+                if(!pageToFunCallback) throw new Error('Implement your Ajax Service pageToFunCallback(newValue) in your ngController!');
+                pageToFunCallback(newValue);
+                // pageToFunc.page(newValue);
                 /*
                 # In ngController:
-                    var paginWathcer = PaginatorWatchForAngularJS($scope, userMgmService.getUsers);
+                    var paginWathcer = PaginatorWatchForAngularJS($scope, function(pageNo){
+                        userMgmService.getUsers.page( (pageNo - 1) * $scope.queryConfig.pageSize);
+                    });
                     paginWathcer.enable();
                 */
             });
