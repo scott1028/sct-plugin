@@ -120,6 +120,7 @@ angular.module('sctPlugin')
 .directive('inputPattern', function(){
     return {
         restrict: 'A',
+        require: 'ngModel',
         link: function(scope, elm, attrs, ctrl) {
             console.debug('InputPattern Directive API:');
             console.debug('\tex: <input input-pattern="([0-9]|\.)"');
@@ -158,6 +159,10 @@ angular.module('sctPlugin')
                     if(newValue !== e.target.value) e.target.value = newValue;
                     if(cursorPosition !== null) e.target.setSelectionRange(cursorPosition - charOffset, cursorPosition - charOffset);
                 }
+
+                // fix bug for ngModel != input[value]
+                ctrl.$setViewValue(e.target.value);
+                ctrl.$render();
             });
         }
     }
