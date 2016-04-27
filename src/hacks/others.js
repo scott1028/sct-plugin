@@ -26,3 +26,4 @@ console.debug('<div\n\
             {{ item.function_id }}\n\
     </label>\n\
 </div>');
+console.debug('* addForm.funcList is List<PK-Integer> Type!');
