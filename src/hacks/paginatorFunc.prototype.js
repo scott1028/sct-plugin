@@ -3,6 +3,7 @@
 var PaginatorWatchForAngularJS = function($scope, pageToFunCallback){
     return {
         disable: null,
+        // 可以在 init Ajax 後再用 enable 啟動 Watch。監聽該 Ajax 的 current_page_no。
         enable: function(){
             $scope.current_page_no = 1;
             this.disable = $scope.$watch('current_page_no', function(newValue, oldValue){
