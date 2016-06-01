@@ -21,6 +21,26 @@ angular.module('sctPlugin')
         };
     }
 ])
+.directive('multiFileModel', ['$parse',
+    function($parse) {
+        // refer to http://uncorkedstudios.com/blog/multipartformdata-file-upload-with-angularjs
+        console.debug('ex: <input class="input_file hidden" id="input_file" type="file" file-model="inputFile">');
+        return {
+            restrict: 'A',
+            link: function(scope, element, attrs) {
+                var model = $parse(attrs.multiFileModel);
+                var modelSetter = model.assign;
+                element.bind('change', function() {
+                    scope.$apply(function() {
+                        var filelist = [];
+                        for(var i=0; i<element[0].files.length; i++) filelist.push(element[0].files[i]);
+                        modelSetter(scope, filelist);
+                    });
+                });
+            }
+        };
+    }
+])
 //
 .directive('newMaxlength', function() {
     return {
