@@ -27,6 +27,7 @@ angular.module('sctPlugin')
     function($parse) {
         // refer to http://uncorkedstudios.com/blog/multipartformdata-file-upload-with-angularjs
         console.debug('ex: <input class="input_file hidden" id="input_file" type="file" file-model="inputFile">');
+        console.debug('多檔的時候要重組 fileList 陣列改成只偶 fileName 的 String 再塞到 ngModel 做 Validation 否則會出現 Readonly Assign 的 AngularJS 錯誤！');
         return {
             restrict: 'A',
             link: function(scope, element, attrs) {
