@@ -7,8 +7,8 @@ angular.module('sctPlugin')
     function($parse) {
         // refer to http://uncorkedstudios.com/blog/multipartformdata-file-upload-with-angularjs
         console.debug('ex: <input class="input_file hidden" id="input_file" type="file" file-model="inputFile">');
-        console.debug('ex: Fetch fileName to ngValue(readonly):');
-        console.debug("\t" + '<input type="text" ng-value="addForm.$$importConfigurationScript.name" readonly />');
+        console.debug('ex: Fetch fileName to ngModel for formValidation:');
+        console.debug("\t" + '<input type="text" ng-model="addForm.$$importConfigurationScript.name" readonly />');
         return {
             restrict: 'A',
             link: function(scope, element, attrs) {
