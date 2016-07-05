@@ -217,7 +217,7 @@ angular.module('sctPlugin')
             elm.blur(function(e) {
                 if(e.target.value.match(new RegExp(e.target.getAttribute('blur-pattern'))) === null){
                     if(message !== '') alert(message);
-                    else alert('當前輸入：' + e.target.value + '格式不符！');
+                    else alert('當前輸入值為："' + e.target.value + '" 與格式不符！');
                     angular.element(e.target).focus();
                 };
             });
