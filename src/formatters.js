@@ -145,7 +145,7 @@ angular.module('sctPlugin')
         restrict: 'A',
         require: 'ngModel',
         link: function(scope, elm, attrs, ctrl) {
-            console.debug('InputPattern Directive API:');
+            console.debug('InputPattern Directive API(only work for input[type=text]):');
             console.debug('\tex: <input input-pattern="([0-9]|\.)"');
             console.debug('\n');
             console.debug('<input ' +
