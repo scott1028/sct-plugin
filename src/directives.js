@@ -412,8 +412,6 @@ angular.module('sctPlugin')
         '</div>');
 }])
 //
-
-
 .directive('ajaxingBlockBy', function($compile, $rootScope) {
     return {
         restrict: 'A',
@@ -463,5 +461,94 @@ angular.module('sctPlugin')
             el.append(dom);
         }
     };
+})
+//
+.directive("tipInfo", function() {
+    return {
+        scope: {
+            onstoreData: '=onstoreData',
+            editingData: '=editingData',
+            field: '=field'
+        },
+        restrict: 'E',
+        template: (function(){
+            return [
+                '<div>',
+                '    <div ng-if="displayTip()"',
+                '        class="tooltip fade bottom in"',
+                '        style="display: block; top: 80px; left: 15px; position: absolute;">',
+                '        <div class="tooltip-arrow"></div>',
+                '        <div class="tooltip-inner">',
+                '            {{ onstoreData[field] }}',
+                '        </div>',
+                '    </div>',
+                '    <div ng-if="equals(onstoreData, {})"',
+                '        class="tooltip fade bottom in"',
+                '        style="display: block; top: 80px; left: 15px; position: absolute;">',
+                '        <div class="tooltip-arrow"></div>',
+                '        <div class="tooltip-inner">',
+                '            (This is new data)',
+                '        </div>',
+                '    </div>',
+                '</div>'
+            ].join('');
+        })(),
+        link: function(scope, elem, attrs, modelCtl) {
+            
+            //
+            console.debug('<input class="tip-container" />><tip-info></tip-info> API:');
+            console.debug('\tBase on bootstrap .tooltip CSS.');
+            console.debug('\tYou must set onstore-data="..."');
+            console.debug('\tYou must set editing-data="..."');
+            console.debug('\tYou must set field="..."');
+            console.debug('\tSet CSS => ".tip-container + tip-info" for display.');
+            console.debug('\tTipInfo Element must next origin Element');
+
+
+            //
+            scope.equals = angular.equals;
+
+
+            // determine if display tipbox.
+            if(!angular.isFunction(scope.$parent.displayTip)){
+                console.debug('Example');
+                console.debug('    $scope.displayTip = function(scope){');
+                console.debug('        return function(){');
+                console.debug('            if(scope.onstoreData === undefined || scope.editingData === undefined)');
+                console.debug('                return false;');
+                console.debug('            return scope.onstoreData !== null && !scope.equals(scope.onstoreData, {})');
+                console.debug('                && scope.onstoreData[scope.field] !== undefined');
+                console.debug('                && scope.onstoreData[scope.field] !== scope.editingData[scope.field];');
+                console.debug('        }');
+                console.debug('    };');
+                throw new Error('Please implement what condifiton tipbox should be display.');
+            }
+            else{
+                scope.displayTip = scope.$parent.displayTip(scope);
+            };
+
+
+            // add Style, from View move to Here, due to a non-executed JS in view bug.
+            (function(){
+                // Here must be jQuery/Angualr ready.
+                // for preview not in editing page
+                var tipInfoStyle = angular.element('\
+                    <style id="tip-info">\
+                        .tip-container + tip-info {\
+                            display: none!important;\
+                        }\
+                        [disabled] .tip-container:hover + tip-info {\
+                            display: block!important;\
+                        }\
+                        *:not([disabled]) .tip-container:focus + tip-info {\
+                            display: block!important;\
+                        }\
+                    </style>');
+
+                angular.element('style#tip-info').remove();
+                angular.element('[ng-view]').append(tipInfoStyle);
+            })();
+        }
+    }
 })
 ;
