@@ -15,11 +15,28 @@ function msieversion() {
     }
 
     return false;
-}
+};
 
+//
 function stopFunctionForIE(){
     document.execCommand('Stop');
-}
+};
+
+//
+function blobDownload(blob, fileName){
+    if(msieversion()){
+        window.navigator.msSaveBlob(blob, fileName);
+    }
+    else {
+        var downloadURL = window.URL.createObjectURL(blob);
+        var link = document.createElement("a");
+        link.download = fileName;
+        link.href = downloadURL;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+};
 
 console.debug('\
 \t// Detect IE then replace stop Function.\n\
