@@ -24,6 +24,9 @@ var formaters = {
             }
         };
 
+        if(tailNode[tailField] === '')
+            return tailNode[tailField] = 0;
+
         if(tailNode[tailField] == undefined)
             return tailNode[tailField] = 0;
 
