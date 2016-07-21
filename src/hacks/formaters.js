@@ -1,6 +1,6 @@
 'use strict';
 
-console.debug("doFormat API: <input class=\"form-control\" type=\"number\" ng-model=\"item.price\" ng-blur=\"doFormat('(?:^[0-9]{1,5}\\.\\d{1,2})|(?:^[0-9]{1,5})', 'item.price')\" />");
+console.debug("doFormat API: <input class=\"form-control\" type=\"number\" ng-model=\"item.price\" ng-blur=\"doNumberFormat('(?:^[0-9]{1,5}\\.\\d{1,2})|(?:^[0-9]{1,5})', 'item.price')\" />");
 var formaters = {
     doNumberFormat: function(regexString, nodeValue){
         var findModel = function(node){
