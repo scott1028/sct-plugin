@@ -2,7 +2,7 @@
 
 console.debug("doFormat API: <input class=\"form-control\" type=\"number\" ng-model=\"item.price\" ng-blur=\"doFormat('(?:^[0-9]{1,5}\\.\\d{1,2})|(?:^[0-9]{1,5})', 'item.price')\" />");
 var formaters = {
-    doFormat: function(regexString, nodeValue){
+    doNumberFormat: function(regexString, nodeValue){
         var findModel = function(node){
             $$scope = $$scope[node];
         };
@@ -25,10 +25,10 @@ var formaters = {
         };
 
         if(tailNode[tailField] == undefined)
-            return;
+            return tailNode[tailField] = 0;
 
         if(tailNode[tailField] == null)
-            return;
+            return tailNode[tailField] = 0;
 
         var stringValue = tailNode[tailField].toString();
         tailNode[tailField] = parseFloat(stringValue.match(regexp));
