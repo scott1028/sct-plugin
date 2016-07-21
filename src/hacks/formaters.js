@@ -24,9 +24,13 @@ var formaters = {
             }
         };
 
-        if(tailNode[tailField]){
-            var stringValue = tailNode[tailField].toString();
-            tailNode[tailField] = parseFloat(stringValue.match(regexp));
-        }
+        if(tailNode[tailField] == undefined)
+            return;
+
+        if(tailNode[tailField] == null)
+            return;
+
+        var stringValue = tailNode[tailField].toString();
+        tailNode[tailField] = parseFloat(stringValue.match(regexp));
     }
 };
