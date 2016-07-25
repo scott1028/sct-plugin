@@ -27,3 +27,26 @@ console.debug('<div\n\
     </label>\n\
 </div>');
 console.debug('* addForm.funcList is List<PK-Integer> Type!');
+
+
+var LeakArray = function(size){
+    var size = size;
+    var store = new Array(size);
+    this.push = function(val){
+        store = store.slice(1, size);
+        store.push(val);
+    };
+    this.pop = function(){
+        store.pop();
+    };
+    this.debug = function(){
+        return store;
+    };
+    this.get = function(index){
+        return store[index];
+    };
+    this.set = function(index, val){
+        store[index] = val;
+    };
+};
+console.debug('new LeakArray(2); // 隨著推進新的元素會拋棄舊的元素.');
