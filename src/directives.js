@@ -468,7 +468,8 @@ angular.module('sctPlugin')
         scope: {
             onstoreData: '=onstoreData',
             editingData: '=editingData',
-            field: '=field'
+            field: '=field',
+            style: '=?setStyle',
         },
         restrict: 'E',
         template: (function(){
@@ -476,7 +477,7 @@ angular.module('sctPlugin')
                 '<div>',
                 '    <div ng-if="displayTip()"',
                 '        class="tooltip fade bottom in"',
-                '        style="display: block; top: 80px; left: 15px; position: absolute;">',
+                '        ng-style="style">',
                 '        <div class="tooltip-arrow"></div>',
                 '        <div class="tooltip-inner">',
                 '            {{ onstoreData[field] }}',
@@ -484,7 +485,7 @@ angular.module('sctPlugin')
                 '    </div>',
                 '    <div ng-if="equals(onstoreData, {})"',
                 '        class="tooltip fade bottom in"',
-                '        style="display: block; top: 80px; left: 15px; position: absolute;">',
+                '        ng-style="style">',
                 '        <div class="tooltip-arrow"></div>',
                 '        <div class="tooltip-inner">',
                 '            (This is new data)',
@@ -507,6 +508,7 @@ angular.module('sctPlugin')
 
             //
             scope.equals = angular.equals;
+            scope.style = scope.style || { display: 'block', top: '80px', left: '15px', position: 'absolute' };
 
 
             // determine if display tipbox.
