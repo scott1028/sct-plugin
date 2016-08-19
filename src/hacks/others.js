@@ -50,3 +50,14 @@ var LeakArray = function(size){
     };
 };
 console.debug('new LeakArray(2); // 隨著推進新的元素會拋棄舊的元素.');
+
+
+console.debug('Safari JSON.stringify issue patch.');
+Number.prototype.startsWith = function(v){
+    var val;
+    if(this === null || this === undefined)
+        val = '';
+    else
+        val = String(this);
+    return val.startsWith(String(v));
+};
