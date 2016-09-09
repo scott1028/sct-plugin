@@ -61,3 +61,14 @@ Number.prototype.startsWith = function(v){
         val = String(this);
     return val.startsWith(String(v));
 };
+
+
+// String.format('{0}, {1}, {2}', 1, 2, 3);
+String.format = function() {
+    var s = arguments[0];
+    for (var i = 0; i < arguments.length - 1; i++) {       
+        var reg = new RegExp("\\{" + i + "\\}", "gm");             
+        s = s.replace(reg, arguments[i + 1]);
+    }
+    return s;
+};
