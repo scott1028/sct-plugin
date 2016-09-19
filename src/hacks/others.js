@@ -72,3 +72,11 @@ String.format = function() {
     }
     return s;
 };
+
+
+//
+Date.prototype.invalid = function(){
+    if(typeof moment !== typeof Function)
+        throw new Error('please install moment.js plugin.');
+    return moment(this).isValid();
+};
