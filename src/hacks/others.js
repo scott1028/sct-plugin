@@ -76,8 +76,8 @@ String.format = function() {
 
 // String as Date object
 String.prototype.asDate = function(){
-    if(this.toString().match(/^\d{4}-\d{2}-\d{2}/) === null)
-        throw new Error('date format must be started with yyyy-mm-dd.');;
+    // if(this.toString().match(/^\d{4}-\d{2}-\d{2}/) === null)
+    //     throw new Error('date format must be started with yyyy-mm-dd.');
     return new Date(this.toString());
 };
 
