@@ -75,7 +75,7 @@ String.format = function() {
 
 
 //
-Date.prototype.invalid = function(){
+Date.prototype.isValid = function(){
     if(typeof moment !== typeof Function)
         throw new Error('please install moment.js plugin.');
     return moment(this).isValid();
