@@ -286,4 +286,26 @@ angular.module('sctPlugin')
         };
     }
 ])
+//
+.directive('ngPlaceholder', ['$parse',
+    function($parse) {
+        // refer to https://segmentfault.com/q/1010000002677808
+        console.debug('ngPlaceholder Directive: work with ngPlaceholder[placeholder] well.');
+        console.debug('\tex: <input class="input_file hidden" id="input_file" type="file" ng-placeholder="3123\n3123\n3123">');
+        return {
+            require: 'ngModel',
+            restrict: 'A',
+            link: function(scope, element, attrs, ngModelCtrl) {
+
+                //
+                var targetValue = element.attr('ng-placeholder');
+                targetValue = JSON.parse('{"val":"' + targetValue + '"}').val;
+                if(!targetValue){
+                    throw new Error('No Value in < ... ng-placeholder=? ... />');
+                }
+                element.attr('placeholder', targetValue);
+            }
+        };
+    }
+])
 ;
