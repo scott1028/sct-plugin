@@ -160,3 +160,7 @@ var arrayBufferToString = function(buffer){
     }
     return str;
 };
+var arrayBufferToBase64DataURL = function(buffer){
+    var str = String.fromCharCode.apply(null, new Uint8Array(buffer));
+    return 'data:image/jpg;base64,' + btoa(str);
+};
