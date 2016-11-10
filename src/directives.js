@@ -448,6 +448,7 @@ angular.module('sctPlugin')
 
             var dom = angular.element([
                 '<div ng-show="ajaxing" class="ajax_loading" style="',
+                    'left: 0px;',
                     'top: 0px;',
                     'height: 100%;',
                     'max-height: 100%;',
