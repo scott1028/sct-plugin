@@ -216,9 +216,25 @@ angular.module('sctPlugin')
             //
             elm.blur(function(e) {
                 if(e.target.value.match(new RegExp(e.target.getAttribute('blur-pattern'))) === null){
-                    if(message !== '') alert(message);
-                    else alert('當前輸入值為："' + e.target.value + '" 與格式不符！');
-                    angular.element(e.target).focus();
+                    // if(message !== '') alert(message);
+                    // else alert('當前輸入值為："' + e.target.value + '" 與格式不符！');
+                    // angular.element(e.target).focus();
+                    var target = e.target;
+                    if(document.querySelector('.bootbox.modal.bootbox-alert') !== null){
+                        if(document.activeElement === document.body)
+                            target.focus();
+                        return;
+                    }
+                    if(message !== ''){
+                        $ngBootbox.alert(message).then(function(){
+                            target.focus();
+                        });
+                    }
+                    else{
+                        $ngBootbox.alert('當前輸入值為："' + e.target.value + '" 與格式不符！').then(function(){
+                            target.focus();
+                        });
+                    }
                 };
             });
         }
