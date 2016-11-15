@@ -190,7 +190,7 @@ angular.module('sctPlugin')
         }
     }
 })
-.directive('blurPattern', function(){
+.directive('blurPattern', function($ngBootbox){
     return {
         restrict: 'A',
         link: function(scope, elm, attrs, ctrl) {
