@@ -554,4 +554,121 @@ angular.module('sctPlugin')
         }
     }
 })
+//
+.directive('newPaginator', function() {
+    return {
+        replace: false,
+        scope: {
+            data: '=ngModel'
+        },
+        restrict: 'E',
+        templateUrl: 'new-paginator.html',
+        link: function($scope, element, attrs, ngModelCtrl){
+            // API variables using these
+            // ngModel = {
+            //     currentPageNo: 1,
+            //     pageSize: 20
+            // }
+            console.debug('<new-paginator ng-model="data"></new-paginator> API:');
+            console.debug('\tdata structure:');
+            console.debug('\t\tdata.currentPageNo: number, ex: 1');
+            console.debug('\t\tdata.pageSize: number, ex: 20');
+            console.debug('\t*In Parent Scope watch data.currentPageNo is okay.');
+
+            $scope.next = function(){
+                if($scope.currentPageNo > $scope.totalPage -1)
+                    return;
+                $scope.currentPageNo += 1;
+            };
+
+            $scope.prev = function(){
+                if($scope.currentPageNo === 1)
+                    return;
+                $scope.currentPageNo -= 1;
+            }
+
+            $scope.data.totalPage = Math.ceil($scope.data.totalCount / $scope.data.pageSize);
+            $scope.currentPageNo = $scope.data.currentPageNo;
+
+            $scope.$watch(function(){
+                return $scope.currentPageNo;
+            }, function(newValue, oldValue){
+                if(newValue === undefined)
+                    return $scope.currentPageNo = $scope.data.currentPageNo = 1;
+                if($scope.currentPageNo > $scope.data.totalPage -1){
+                    return $scope.currentPageNo = $scope.data.currentPageNo = $scope.data.totalPage;
+                }
+                if($scope.currentPageNo <= 1){
+                    return $scope.currentPageNo = $scope.data.currentPageNo = 1;
+                }
+                $scope.currentPageNo = $scope.data.currentPageNo = newValue;
+            }, true);
+        }
+    }
+})
+//
+.run(['$templateCache', function($templateCache){
+    $templateCache.put("new-paginator.html",
+        '<div>' +
+        '    <div style="line-height: 25px; margin: 5px;" onselectstart="return false;">' +
+        '        <button' +
+        '            class="glyphicon glyphicon-backward"' +
+        '            style="top: 0px; line-height: 25px; cursor: pointer; background-color: Transparent; border: none;"' +
+        '            ng-disabled="ajaxing"' +
+        '            ng-click="prev();"></button>' +
+        '        <input' +
+        '            ng-model-options="{ updateOn: \'blur\'}"' +
+        '            type="number"' +
+        '            ng-model="currentPageNo"' +
+        '            style="font-size: 12pt; height: 29px; line-height: 25px; border-radius: 0px; width: 80px; text-align: center;"' +
+        '            ng-blur="page()"' +
+        '            max="100000"' +
+        '            onmousewheel="return false;"' +
+        '            ng-model-onblur />' +
+        '        <button' +
+        '            class="glyphicon glyphicon-forward"' +
+        '            style="top: 0px; line-height: 25px; cursor: pointer; background-color: Transparent; border: none;"' +
+        '            ng-disabled="ajaxing"' +
+        '            ng-click="next();"></button>' +
+        '        <span style="text-align: right; height: 0px; line-height: 25px; position: relative; color: #157ab5;">Total: {{data.totalCount}} 筆, Page 共: {{data.totalPage}} 頁</span>' +
+        '        <span ng-show="showPageSizer" class="pull-right" style="height: 29px!important; top: 1px; margin-left: 10px;">' +
+        '            <button' +
+        '                class="btn btn-default"' +
+        '                ng-repeat="item in pageSizeList"' +
+        '                style="height: 25px!important; line-height: 25px!important; padding-top: 0px; padding-bottom: 0px;"' +
+        '                ng-click="setPageSize(item)"' +
+        '                ng-disabled="ajaxing">' +
+        '                {{item}}' +
+        '            </button>' +
+        '        </span>' +
+        '        <span class="ajaxing-min" style="margin-left: 20px; height: 10px; min-width: 200px; display: inline-block;" ng-show="ajaxing"></span>' +
+        '    </div>' +
+        '    <style type="text/css">' +
+        '        .glyphicon.glyphicon-backward:hover, .glyphicon.glyphicon-forward:hover {' +
+        '            color: #303030;' +
+        '            font-weight: bold;' +
+        '        }' +
+        '        button:disabled, button:disabled:hover {' +
+        '            color: silver!important;' +
+        '        }' +
+        '        input::-webkit-outer-spin-button,' +
+        '        input::-webkit-inner-spin-button {' +
+        '            -webkit-appearance: none;' +
+        '            margin: 0;' +
+        '        }' +
+        '        @media (max-width: 991px){' +
+        '            .page-selector .col-md-2 {' +
+        '                float: right;' +
+        '            }' +
+        '            .page-selector .col-md-6 {' +
+        '                float: left;' +
+        '            }' +
+        '            .pull-right[ng-show="showPageSizer"] {' +
+        '                top: -2px!important;' +
+        '                float: none!important;' +
+        '            }' +
+        '        }' +
+        '    </style>' +
+        '</div>');
+}])
 ;
