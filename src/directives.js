@@ -573,6 +573,7 @@ angular.module('sctPlugin')
             console.debug('\tdata structure:');
             console.debug('\t\tdata.currentPageNo: number, ex: 1');
             console.debug('\t\tdata.pageSize: number, ex: 20');
+            console.debug('\t\tdata.totalCount: number, ex: 105');
             console.debug('\t*In Parent Scope watch data.currentPageNo is okay.');
 
             $scope.next = function(){
