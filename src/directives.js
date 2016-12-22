@@ -588,8 +588,13 @@ angular.module('sctPlugin')
                 $scope.currentPageNo -= 1;
             }
 
-            $scope.data.totalPage = Math.ceil($scope.data.totalCount / $scope.data.pageSize);
-            $scope.currentPageNo = $scope.data.currentPageNo;
+            // fix no update parent scope bug
+            $scope.$watch(function(){
+                return [$scope.data.totalCount, $scope.data.pageSize];
+            }, function(){
+                $scope.data.totalPage = Math.ceil($scope.data.totalCount / $scope.data.pageSize);
+                $scope.currentPageNo = $scope.data.currentPageNo;
+            }, true);
 
             $scope.$watch(function(){
                 return $scope.currentPageNo;
