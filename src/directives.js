@@ -590,7 +590,7 @@ angular.module('sctPlugin')
 
             // fix no update parent scope bug
             $scope.$watch(function(){
-                return [$scope.data.totalCount, $scope.data.pageSize];
+                return [$scope.data.totalCount, $scope.data.pageSize, $scope.data.currentPageNo];
             }, function(){
                 $scope.data.totalPage = Math.ceil($scope.data.totalCount / $scope.data.pageSize);
                 $scope.currentPageNo = $scope.data.currentPageNo;
