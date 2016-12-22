@@ -577,8 +577,8 @@ angular.module('sctPlugin')
             console.debug('\t*In Parent Scope watch data.currentPageNo is okay.');
 
             $scope.next = function(){
-                if($scope.currentPageNo > $scope.totalPage -1)
-                    return;
+                if($scope.currentPageNo > $scope.totalPage - 1)
+                    return $scope.currentPageNo = $scope.totalPage;
                 $scope.currentPageNo += 1;
             };
 
@@ -586,28 +586,55 @@ angular.module('sctPlugin')
                 if($scope.currentPageNo === 1)
                     return;
                 $scope.currentPageNo -= 1;
-            }
+            };
 
             // fix no update parent scope bug
             $scope.$watch(function(){
-                return [$scope.data.totalCount, $scope.data.pageSize, $scope.data.currentPageNo];
-            }, function(){
-                $scope.data.totalPage = Math.ceil($scope.data.totalCount / $scope.data.pageSize);
-                $scope.currentPageNo = $scope.data.currentPageNo;
+                return $scope.data.currentPageNo;
+            }, function(newValue, oldValue){
+                console.log(newValue, oldValue, $scope.data.totalCount, $scope.data.totalPage);
+                $scope.currentPageNo = newValue;
             }, true);
+            $scope.$watch(function(){
+                return $scope.data.totalCount;
+            }, function(newValue, oldValue){
+                $scope.data.totalPage = Math.ceil($scope.data.totalCount / $scope.data.pageSize);
+            }, true);
+            $scope.$watch(function(){
+                return $scope.data.pageSize;
+            }, function(newValue, oldValue){
+                $scope.data.totalPage = Math.ceil($scope.data.totalCount / $scope.data.pageSize);
+            }, true);
+
+            var setCurrentPageNo = function(currentPageNo){
+                $scope.data.currentPageNo = currentPageNo
+            };
 
             $scope.$watch(function(){
                 return $scope.currentPageNo;
             }, function(newValue, oldValue){
+                if($scope.data.totalPage <= 0){
+                    $scope.currentPageNo = 1;
+                    return console.log('total page not yet!');
+                }
+                if(newValue === oldValue)
+                    return setCurrentPageNo($scope.currentPageNo);
+                if(newValue <= 0){
+                    $scope.currentPageNo = 1;
+                    return setCurrentPageNo($scope.currentPageNo);
+                }
+                if(newValue === 1){
+                    $scope.currentPageNo = 1;
+                    return setCurrentPageNo($scope.currentPageNo);
+                }
                 if(newValue === undefined)
-                    return $scope.currentPageNo = $scope.data.currentPageNo = 1;
-                if($scope.currentPageNo > $scope.data.totalPage -1){
-                    return $scope.currentPageNo = $scope.data.currentPageNo = $scope.data.totalPage;
+                    return $scope.currentPageNo = 1;
+                if(newValue > $scope.data.totalPage - 1){
+                    // console.log(newValue, oldValue);
+                    $scope.currentPageNo = $scope.data.totalPage;
+                    return setCurrentPageNo($scope.currentPageNo);
                 }
-                if($scope.currentPageNo <= 1){
-                    return $scope.currentPageNo = $scope.data.currentPageNo = 1;
-                }
-                $scope.currentPageNo = $scope.data.currentPageNo = newValue;
+                return setCurrentPageNo($scope.currentPageNo);
             }, true);
         }
     }
