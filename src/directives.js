@@ -589,6 +589,8 @@ angular.module('sctPlugin')
             };
 
             $scope.next = function(){
+                if($scope.data.totalPage === 0)
+                    return $scope.data.currentPageNo = 1;
                 if($scope.data.currentPageNo > $scope.data.totalPage - 1)
                     return $scope.data.currentPageNo = $scope.data.totalPage;
                 $scope.data.currentPageNo += 1;
