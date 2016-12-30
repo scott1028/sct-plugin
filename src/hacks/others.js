@@ -165,3 +165,10 @@ var arrayBufferToBase64DataURL = function(buffer, type){
     var str = String.fromCharCode.apply(null, new Uint8Array(buffer));
     return 'data:' + type + ';base64,' + btoa(str);
 };
+
+console.debug('Import JSON filter util.');
+if(JSON){
+    JSON.filter = function(item, func){
+        return JSON.parse(JSON.stringify(item, func));
+    }
+};
