@@ -28,6 +28,15 @@ var PaginatorWatchForAngularJS = function($scope, pageToFunCallback){
     };
 };
 
+var PaginatorFuncParamsPrototype = function(defaultPageSize){
+    return {
+        totalCount: 0,
+        currentPageNo: 1,
+        pageSize: defaultPageSize || 20,
+        $watcher: function(){},
+    };
+};
+
 var PaginatorFuncPrototype = function($root){
     return {
         lastQuery: {
