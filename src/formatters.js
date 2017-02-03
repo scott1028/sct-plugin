@@ -324,30 +324,44 @@ angular.module('sctPlugin')
         };
     }
 ])
-.directive('stringToNumber', function() {
-  return {
-    require: 'ngModel',
-    link: function(scope, element, attrs, ngModel) {
-      ngModel.$parsers.push(function(value) {
-        return parseFloat(value);
-      });
-      ngModel.$formatters.push(function(value) {
-        return '' + value;
-      });
+.directive('stringToNumber', [
+    function() {
+        return {
+            require: 'ngModel',
+            link: function(scope, element, attrs, ngModel) {
+                ngModel.$parsers.push(function(value) {
+                    if(value === undefined || value === '')
+                        return undefined;
+                    return parseFloat(value);
+                });
+
+                ngModel.$formatters.push(function(value) {
+                    if(value === undefined || value === '')
+                        return undefined;
+                    return '' + value;
+                });
+            }
+        };
     }
-  };
-});
-.directive('numberToString', function() {
-  return {
-    require: 'ngModel',
-    link: function(scope, element, attrs, ngModel) {
-      ngModel.$parsers.push(function(value) {
-        return '' + value;
-      });
-      ngModel.$formatters.push(function(value) {
-        return parseFloat(value);
-      });
+])
+.directive('numberToString', [ 
+    function() {
+        return {
+            require: 'ngModel',
+            link: function(scope, element, attrs, ngModel) {
+                ngModel.$parsers.push(function(value) {
+                    if(value === undefined || value === '')
+                        return undefined;
+                    return '' + value;
+                });
+                
+                ngModel.$formatters.push(function(value) {
+                    if(value === undefined || value === '')
+                        return undefined;
+                    return parseFloat(value);
+                });
+            }
+        };
     }
-  };
-})
+])
 ;
