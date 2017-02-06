@@ -50,11 +50,12 @@ angular.module('sctPlugin')
         require: 'ngModel',
         link: function (scope, element, attrs, ngModelCtrl) {
             console.debug('newMaxlength API: < ... new-maxlength="$int"... />');
+            console.debug('To set newMaxlength before string-to-number directive, please');
             var maxlength = Number(attrs.newMaxlength);
             function fromUser(text) {
                 if(text === null || text === undefined) text = '';
                 if (text.toString().length > maxlength) {
-                    var transformedInput = text.substring(0, maxlength);
+                    var transformedInput = text.toString().substring(0, maxlength);
                     ngModelCtrl.$setViewValue(transformedInput);
                     ngModelCtrl.$render();
                     return transformedInput;
