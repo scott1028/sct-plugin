@@ -329,6 +329,7 @@ angular.module('sctPlugin')
     function() {
         return {
             require: 'ngModel',
+            priority: 1000,
             link: function(scope, element, attrs, ngModel) {
                 ngModel.$parsers.push(function(value) {
                     if(value === undefined || value === '')
@@ -349,6 +350,7 @@ angular.module('sctPlugin')
     function() {
         return {
             require: 'ngModel',
+            priority: 1000,
             link: function(scope, element, attrs, ngModel) {
                 ngModel.$parsers.push(function(value) {
                     if(value === undefined || value === '')
