@@ -371,4 +371,27 @@ angular.module('sctPlugin')
         };
     }
 ])
+.directive('stringToString', [ 
+    function() {
+        return {
+            require: 'ngModel',
+            priority: 1000,
+            link: function(scope, element, attrs, ngModel) {
+                var emptyValue = scope.$eval(attrs.stringToString);
+
+                ngModel.$parsers.push(function(value) {
+                    if(value === emptyValue || value === '' || value === undefined)
+                        return emptyValue;
+                    return '' + value;
+                });
+                
+                ngModel.$formatters.push(function(value) {
+                    if(value === emptyValue || value === '' || value === undefined)
+                        return emptyValue;
+                    return '' + value;
+                });
+            }
+        };
+    }
+])
 ;
