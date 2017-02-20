@@ -102,6 +102,7 @@ angular.module('sctPlugin')
         require: 'ngInclude',
         restrict: 'A',
         link: function (scope, el, attrs) {
+            console.debug('Please use ngIncludeReplace instead of this.');
             el.replaceWith(el.children());
         }
     };
