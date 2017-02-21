@@ -191,6 +191,55 @@ angular.module('sctPlugin')
         }
     }
 })
+.directive('inputPatternAll', function(){
+    return {
+        restrict: 'A',
+        require: 'ngModel',
+        link: function(scope, elm, attrs, ctrl) {
+            console.debug('InputPattern Directive API(only work for input[type=text]):');
+            // ex: ^(?:(\d+|\d+\.|(\d+\.\d\d)|(\d+\.\d)))$
+            console.debug('\tex: <input input-pattern-all="^(?:(\\d+|\\d+\\.|(\\d+\\.\\d\\d)|(\\d+\\.\\d)))$" ...');
+            console.debug('\n');
+            console.debug('<input ' +
+                            'new-maxlength="20" ' +
+                            'type="text" ' +
+                            'ng-model="item.displayOrder" ' +
+                            'input-pattern-all="(?:[0-9\.])" />');
+
+
+            //
+            if(!attrs.inputPatternAll){
+                throw new Error('No Value in < ... input-pattern=? ... />');
+            }
+
+            var lastValue = elm.val();
+            var pattern = new RegExp(attrs.inputPatternAll);
+
+            //
+            elm.on('input', function(e) {
+                console.log(e.target.value, lastValue);
+                if(e.target.value !== '' || e.target.value !== undefined || e.target.value !== null){
+                    if(e.target.value.match(pattern) === null){
+                        return e.target.value = lastValue;
+                    }
+                }
+
+                console.log(scope.$eval(attrs.ngModel));
+                lastValue = e.target.value;
+                ctrl.$setViewValue(e.target.value);
+                ctrl.$render();
+            });
+
+            elm.on('blur', function(e) {
+                if(e.target.value === '')
+                    return;
+                if(attrs.stringToNumber !== undefined){
+                    e.target.value = parseFloat(e.target.value);
+                };
+            });
+        }
+    }
+})
 .directive('blurPattern', function($ngBootbox){
     return {
         restrict: 'A',
