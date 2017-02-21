@@ -220,7 +220,7 @@ angular.module('sctPlugin')
                 console.log(e.target.value, lastValue);
                 if(e.target.value !== '' || e.target.value !== undefined || e.target.value !== null){
                     if(e.target.value.match(pattern) === null){
-                        return e.target.value = lastValue;
+                        e.target.value = lastValue;
                     }
                 }
 
