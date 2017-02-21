@@ -4,7 +4,7 @@
 var genAjaxAnimateCtrl = function(self){
     self.ajaxing = true;
     var ajaxCounter = 0;
-    self.addAjaxCounter = {
+    self.ajaxCounter = {
         add: function(){
             ajaxCounter += 1;
         },
