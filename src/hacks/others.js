@@ -172,3 +172,16 @@ if(JSON){
         return JSON.parse(JSON.stringify(item, func));
     }
 };
+
+console.log('Node string parse')
+var fromPathToObj = function(path){
+    // ex: var aaa = {id:{pk:{$id:7}}}
+    // path: 'aaa.id.pk.$id'
+    try{
+        return eval((path.split('.').join('"]["') + '"]').replace(/\"]/, ''))
+    }
+    catch(e){
+        console.log(e);
+        return undefined;
+    }
+};
