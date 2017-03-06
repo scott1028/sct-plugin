@@ -185,3 +185,47 @@ var fromPathToObj = function(path){
         return undefined;
     }
 };
+
+// ref: http://stackoverflow.com/questions/512528/set-cursor-position-in-html-textbox
+function setSelectionRange(input, selectionStart, selectionEnd) {
+    if (input.setSelectionRange) {
+        input.focus();
+        input.setSelectionRange(selectionStart, selectionEnd);
+    } else if (input.createTextRange) {
+        var range = input.createTextRange();
+        range.collapse(true);
+        range.moveEnd('character', selectionEnd);
+        range.moveStart('character', selectionStart);
+        range.select();
+    }
+}
+
+// ref: http://stackoverflow.com/questions/2897155/get-cursor-position-in-characters-within-a-text-input-field
+function doGetCaretPosition(input) {
+
+    // Initialize
+    var iCaretPos = 0;
+
+    // IE Support
+    if (document.selection) {
+
+        // Set focus on the element
+        input.focus();
+
+        // To get cursor position, get empty selection range
+        var oSel = document.selection.createRange();
+
+        // Move selection start to 0 position
+        oSel.moveStart('character', -input.value.length);
+
+        // The caret position is selection length
+        iCaretPos = oSel.text.length;
+    }
+
+    // Firefox support
+    else if (input.selectionStart || input.selectionStart == '0')
+        iCaretPos = input.selectionStart;
+
+    // Return results
+    return iCaretPos;
+}
