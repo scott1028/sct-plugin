@@ -47,23 +47,24 @@ angular.module('sctPlugin')
 //
 .directive('newMaxlength', function() {
     return {
+        priority: 900,
         require: 'ngModel',
         link: function (scope, element, attrs, ngModelCtrl) {
             console.debug('newMaxlength API: < ... new-maxlength="$int"... />');
             console.debug('To set newMaxlength before string-to-number directive, please');
-            console.debug('Sometime conflict with input-pattern-all.');
             var maxlength = Number(attrs.newMaxlength);
-            function fromUser(text) {
+            element.on('input', function(e){
+                var cp = doGetCaretPosition(e.target);
+                var text = e.target.value;
+                console.log(text);
                 if(text === null || text === undefined) text = '';
                 if (text.toString().length > maxlength) {
                     var transformedInput = text.toString().substring(0, maxlength);
                     ngModelCtrl.$setViewValue(transformedInput);
                     ngModelCtrl.$render();
-                    return transformedInput;
-                }
-                return text;
-            };
-            ngModelCtrl.$parsers.push(fromUser);
+                    setSelectionRange(e.target, cp, cp);
+                };
+            });
         }
     };
 })
@@ -218,9 +219,8 @@ angular.module('sctPlugin')
             var pattern = new RegExp(attrs.inputPatternAll);
 
             //
-            var cp = 0;
             elm.on('input', function(e) {
-                cp = doGetCaretPosition(e.target);
+                var cp = doGetCaretPosition(e.target);
                 console.log(e.target.value, lastValue);
                 if(e.target.value !== '' || e.target.value !== undefined || e.target.value !== null){
                     if(e.target.value.match(pattern) === null){
