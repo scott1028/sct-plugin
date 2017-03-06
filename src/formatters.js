@@ -51,6 +51,7 @@ angular.module('sctPlugin')
         link: function (scope, element, attrs, ngModelCtrl) {
             console.debug('newMaxlength API: < ... new-maxlength="$int"... />');
             console.debug('To set newMaxlength before string-to-number directive, please');
+            console.debug('Sometime conflict with input-pattern-all.');
             var maxlength = Number(attrs.newMaxlength);
             function fromUser(text) {
                 if(text === null || text === undefined) text = '';
@@ -205,6 +206,7 @@ angular.module('sctPlugin')
                             'type="text" ' +
                             'ng-model="item.displayOrder" ' +
                             'input-pattern-all="(?:[0-9\.])" />');
+            console.debug('Sometime conflict with new-maxlength.');
 
 
             //
@@ -216,7 +218,9 @@ angular.module('sctPlugin')
             var pattern = new RegExp(attrs.inputPatternAll);
 
             //
+            var cp = 0;
             elm.on('input', function(e) {
+                cp = doGetCaretPosition(e.target);
                 console.log(e.target.value, lastValue);
                 if(e.target.value !== '' || e.target.value !== undefined || e.target.value !== null){
                     if(e.target.value.match(pattern) === null){
@@ -228,6 +232,7 @@ angular.module('sctPlugin')
                 lastValue = e.target.value;
                 ctrl.$setViewValue(e.target.value);
                 ctrl.$render();
+                setSelectionRange(e.target, cp, cp);
             });
 
             elm.on('blur', function(e) {
