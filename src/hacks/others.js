@@ -178,11 +178,11 @@ var fromPathToObj = function(path){
     // ex: var aaa = {id:{pk:{$id:7}}}
     // path: 'aaa.id.pk.$id'
     try{
-        return eval((path.split('.').join('"]["') + '"]').replace(/\"]/, ''))
+        return (path.split('.').join('"]["') + '"]').replace(/\"]/, '');
     }
     catch(e){
         console.log(e);
-        return undefined;
+        return '';
     }
 };
 
