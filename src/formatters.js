@@ -218,6 +218,12 @@ angular.module('sctPlugin')
             var lastValue = elm.val();
             var pattern = new RegExp(attrs.inputPatternAll);
 
+            // fix little bug when value existed.
+            elm.on('focus', function(e){
+                console.log(e);
+                lastValue = elm.val();
+            });
+
             //
             elm.on('input', function(e) {
                 var cp = doGetCaretPosition(e.target);
