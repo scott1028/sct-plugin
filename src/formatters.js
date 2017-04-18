@@ -51,8 +51,10 @@ angular.module('sctPlugin')
         require: 'ngModel',
         link: function (scope, element, attrs, ngModelCtrl) {
             console.debug('newMaxlength API: < ... new-maxlength="$int"... />');
+            console.debug('newMaxlength API: < ... new-maxlength="$int" truncate-ng-model placeholder... />');
             console.debug('To set newMaxlength before string-to-number directive, please');
             var maxlength = Number(attrs.newMaxlength);
+            var truncateNgModel = attrs.truncateNgModel !== undefined;
             if(!attrs.placeholder && attrs.placeholder !== undefined)
                 attrs.$set('placeholder', 'MaxLen: ' + maxlength);
             element.on('input', function(e){
@@ -66,6 +68,13 @@ angular.module('sctPlugin')
                     ngModelCtrl.$render();
                     setSelectionRange(e.target, cp, cp);
                 };
+            });
+            if(!truncateNgModel)
+                return;
+            ngModelCtrl.$formatters.push(function(value) {
+                if(angular.isString(value))
+                    return value.slice(0, maxlength);
+                return value;
             });
         }
     };
