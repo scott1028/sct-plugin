@@ -53,6 +53,8 @@ angular.module('sctPlugin')
             console.debug('newMaxlength API: < ... new-maxlength="$int"... />');
             console.debug('To set newMaxlength before string-to-number directive, please');
             var maxlength = Number(attrs.newMaxlength);
+            if(!attrs.placeholder && attrs.placeholder !== undefined)
+                attrs.$set('placeholder', 'MaxLen: ' + maxlength);
             element.on('input', function(e){
                 var cp = doGetCaretPosition(e.target);
                 var text = e.target.value;
