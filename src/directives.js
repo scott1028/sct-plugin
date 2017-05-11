@@ -120,6 +120,19 @@ angular.module('sctPlugin')
         });
     };
 })
+.directive('cssInclude', function($http, $templateCache, $compile) {
+    return function(scope, element, attrs) {
+        var templatePath = attrs.cssInclude;
+        $.ajax({
+            url: templatePath,
+            success: function (response) {
+                element.html(response).contents();
+                scope.$applyAsync();
+            },
+            async: false
+        });
+    };
+})
 //
 .directive('ngIncludeReplace', function () {
     return {
