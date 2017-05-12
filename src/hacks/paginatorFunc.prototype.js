@@ -48,7 +48,7 @@ var PaginatorFuncPrototype = function($root){
             },
             success: null,
         },
-        inquiry: function(params, success){
+        inquiry: function(params, success, error){
             throw new Error('Please Implement inquiry Func.');
             // TODO: Override & custom your query ajax func here, example:
             // var self = this;
@@ -59,6 +59,7 @@ var PaginatorFuncPrototype = function($root){
             // }).then(function(resp){
             //     self.lastQuery.params = params;
             //     self.lastQuery.success = success;
+            //     self.lastQuery.error = error;
             //     success(resp);
             // }, $root.errorHandle);
         },
@@ -73,11 +74,11 @@ var PaginatorFuncPrototype = function($root){
             this.page(1);
         },
         refresh: function(){
-            this.inquiry(this.lastQuery.params, this.lastQuery.success);
+            this.inquiry(this.lastQuery.params, this.lastQuery.success, this.lastQuery.error || $root.errorHandler);
         },
         page: function(pageNo){
             this.lastQuery.params.offset = pageNo;
-            this.inquiry(this.lastQuery.params, this.lastQuery.success);
+            this.inquiry(this.lastQuery.params, this.lastQuery.success, this.lastQuery.error || $root.errorHandler);
         },
         reset: function(){
             this.lastQuery = {
