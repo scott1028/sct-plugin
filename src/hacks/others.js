@@ -241,5 +241,6 @@ function createWorker(script, isURL){
     // Usage
     // worker.postMessage( ... );
     // worker.onmessage = function(e){ ... };
+    // >> Invoke worker.terminate() when it is no use.
     return worker;
 }
