@@ -229,3 +229,12 @@ function doGetCaretPosition(input) {
     // Return results
     return iCaretPos;
 }
+
+function createWorker(script_string){
+    'use strict';
+    var worker = new Worker(window.URL.createObjectURL(new Blob([script_string], {type: 'text/javascript'})))
+    // Usage
+    // worker.postMessage( ... );
+    // worker.onmessage = function(e){ ... };
+    return worker;
+}
