@@ -231,8 +231,8 @@ function doGetCaretPosition(input) {
 }
 
 function createWorker(script_string){
-    'use strict';
-    var worker = new Worker(window.URL.createObjectURL(new Blob([script_string], {type: 'text/javascript'})))
+    // $origin` is for IE, due to no location.origin in web worker.
+    var worker = new Worker(window.URL.createObjectURL(new Blob([`var $origin = ${location.origin};${script_string};`], {type: 'text/javascript'})))
     // Usage
     // worker.postMessage( ... );
     // worker.onmessage = function(e){ ... };
