@@ -230,9 +230,11 @@ function doGetCaretPosition(input) {
     return iCaretPos;
 }
 
-function createWorker(script_string){
+function createWorker(script){
+    if(typeof script === 'function')
+        script = `(${script.toString()})()`;
     // $origin` is for IE, due to no location.origin in web worker.
-    var worker = new Worker(window.URL.createObjectURL(new Blob([`var $origin = '${location.origin}';${script_string};`], {type: 'text/javascript'})))
+    var worker = new Worker(window.URL.createObjectURL(new Blob([`var $origin = '${location.origin}';${script};`], {type: 'text/javascript'})))
     // Usage
     // worker.postMessage( ... );
     // worker.onmessage = function(e){ ... };
