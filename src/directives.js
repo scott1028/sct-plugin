@@ -129,16 +129,12 @@ angular.module('sctPlugin')
         $.ajax({
             url: templatePath,
             success: function (response) {
-                setTimeout(function(){
-                    element.html(response).contents();
-                    scope.$apply();
-                })
+                element.html(response).contents();
+                scope.$applyAsync();
             },
             complete: function(){
-                setTimeout(function(){
-                    scope.$root.$broadcast('contentLoaded');
-                    scope.$apply();
-                });
+                scope.$root.$broadcast('contentLoaded');
+                scope.$applyAsync();
             },
             async: $async
         });
