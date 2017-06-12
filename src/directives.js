@@ -120,16 +120,27 @@ angular.module('sctPlugin')
         });
     };
 })
-.directive('cssInclude', function($http, $templateCache, $compile) {
+.directive('contentInclude', function($http, $templateCache, $compile) {
     return function(scope, element, attrs) {
-        var templatePath = attrs.cssInclude;
+        console.debug('<style …  content-include="/xxx/test.js" load-by-async="false" … ></style>: To Include Template without Create new Scope.');
+        var async = eval(attrs.loadByAsync || true);
+        scope.$root.$broadcast('contentLoad');
+        var templatePath = attrs.contentInclude;
         $.ajax({
             url: templatePath,
             success: function (response) {
-                element.html(response).contents();
-                scope.$applyAsync();
+                setTimeout(function(){
+                    element.html(response).contents();
+                    scope.$apply();
+                })
             },
-            async: false
+            complete: function(){
+                setTimeout(function(){
+                    scope.$root.$broadcast('contentLoaded');
+                    scope.$apply();
+                });
+            },
+            async: async
         });
     };
 })
