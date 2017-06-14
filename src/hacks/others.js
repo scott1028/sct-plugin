@@ -169,7 +169,7 @@ var arrayBufferToBase64DataURL = function(buffer, type){
 console.debug('Import JSON filter util.');
 if(JSON){
     JSON.filter = function(item, func){
-        return JSON.parse(JSON.stringify(item, func));
+        return JSON.parse(JSON.stringify(item, func) || '{}');
     }
 };
 
