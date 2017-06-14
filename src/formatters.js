@@ -3,11 +3,12 @@ angular.module('sctPlugin')
 
 
 //
-.directive('fileModel', ['$parse',
-    function($parse) {
+.directive('fileModel', ['$parse', '$timeout',
+    function($parse, $timeout) {
         // refer to http://uncorkedstudios.com/blog/multipartformdata-file-upload-with-angularjs
         console.debug('ex: <input class="input_file hidden" id="input_file" type="file" file-model="inputFile">');
         console.debug('ex: Fetch fileName to ngModel for formValidation:');
+        console.debug(`ex: <input class="input_file hidden" ng-model="inputFile" ng-after-action="image = inputFile.name;">`);
         console.debug("\t" + '<input type="text" ng-model="addForm.$$importConfigurationScript.name" readonly />');
         return {
             restrict: 'A',
@@ -17,6 +18,12 @@ angular.module('sctPlugin')
                 element.bind('change', function() {
                     scope.$apply(function() {
                         modelSetter(scope, element[0].files[0]);
+                        $timeout(function() {
+                            if(attrs.ngAfterAction) scope.$eval(attrs.ngAfterAction);
+                        });
+                        let data = {};
+                        data[attrs.fileModel] = element[0].files[0];
+                        scope.$emit('fileModel', data);
                     });
                 });
             }
