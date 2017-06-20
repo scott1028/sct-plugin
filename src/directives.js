@@ -286,7 +286,7 @@ angular.module('sctPlugin')
         '            style="top: 0px; line-height: 25px; cursor: pointer; background-color: Transparent; border: none;"' +
         '            ng-disabled="ajaxing"' +
         '            ng-click="nextPage();"></button>' +
-        '        <span style="text-align: right; height: 0px; line-height: 25px; position: relative; color: #157ab5;">Total: {{total_count}} 筆, Page 共: {{total_page}} 頁</span>' +
+        '        <span style="text-align: right; height: 0px; line-height: 25px; position: relative; color: #157ab5;">Total Count: {{total_count}}, Total Page: {{total_page}}</span>' +
         '        <span ng-show="showPageSizer" class="pull-right" style="height: 29px!important; top: 1px; margin-left: 10px;">' +
         '            <button' +
         '                class="btn btn-default"' +
@@ -391,7 +391,7 @@ angular.module('sctPlugin')
         '            style="top: 0px; line-height: 25px; cursor: pointer; background-color: Transparent; border: none;"' +
         '            ng-disabled="ajaxing"' +
         '            ng-click="next();"></button>' +
-        '        <span style="text-align: right; height: 0px; line-height: 25px; position: relative; color: #157ab5;">Total: {{totalCount}} 筆, Page 共: {{totalPage}} 頁</span>' +
+        '        <span style="text-align: right; height: 0px; line-height: 25px; position: relative; color: #157ab5;">Total Count: {{totalCount}}, Total Page: {{totalPage}}</span>' +
         '        <span ng-show="showPageSizer" class="pull-right" style="height: 29px!important; top: 1px; margin-left: 10px;">' +
         '            <button' +
         '                class="btn btn-default"' +
@@ -674,7 +674,7 @@ angular.module('sctPlugin')
         '            style="top: 0px; line-height: 25px; cursor: pointer; background-color: Transparent; border: none;"' +
         '            ng-disabled="ajaxing"' +
         '            ng-click="next();"></button>' +
-        '        <span style="text-align: right; height: 0px; line-height: 25px; position: relative; color: #157ab5;">Total: {{data.totalCount}} 筆, Page 共: {{data.totalPage}} 頁</span>' +
+        '        <span style="text-align: right; height: 0px; line-height: 25px; position: relative; color: #157ab5;">Total Count: {{data.totalCount}}, Total Page 共: {{data.totalPage}}</span>' +
         '        <span ng-show="showPageSizer" class="pull-right" style="height: 29px!important; top: 1px; margin-left: 10px;">' +
         '            <button' +
         '                class="btn btn-default"' +
@@ -738,7 +738,7 @@ angular.module('sctPlugin')
         '            style="top: 0px; line-height: 25px; cursor: pointer; background-color: Transparent; border: none;"' +
         '            ng-disabled="ajaxing"' +
         '            ng-click="next();"></button>' +
-        '        <span style="text-align: right; height: 0px; line-height: 25px; position: relative; color: #157ab5;">Total: {{data.totalCount}} 筆, Page 共: {{data.totalPage}} 頁</span>' +
+        '        <span style="text-align: right; height: 0px; line-height: 25px; position: relative; color: #157ab5;">Total Count: {{data.totalCount}}, Total Page: {{data.totalPage}}</span>' +
         '        <span ng-show="showPageSizer" class="pull-right" style="height: 29px!important; top: 1px; margin-left: 10px;">' +
         '            <button' +
         '                class="btn btn-default"' +
