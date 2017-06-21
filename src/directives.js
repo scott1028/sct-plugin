@@ -123,6 +123,15 @@ angular.module('sctPlugin')
 .directive('contentInclude', function($http, $templateCache, $compile) {
     return function(scope, element, attrs) {
         console.debug('<style …  content-include="/xxx/test.js" load-by-async="false" … ></style>: To Include Template without Create new Scope.');
+        console.debug(`
+        Can Add to $rootScope when using load-by-async="true":            
+            $rootScope.$on('contentLoad', function(){
+                angular.element('[ng-view]').css('opacity', 0);
+            });
+            $rootScope.$on('contentLoaded', function(){
+                angular.element('[ng-view]').css('opacity', 1);
+            });
+        `);
         var $async = eval(attrs.loadByAsync || false);
         scope.$root.$broadcast('contentLoad');
         var templatePath = attrs.contentInclude;
