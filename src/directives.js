@@ -132,6 +132,7 @@ angular.module('sctPlugin')
                 angular.element('[ng-view]').css('opacity', 1);
             });
         `);
+        console.debug(`可考慮用 Gulp Replace String 把 Sync Ajax Content 直接取代掉 or 或是使用 link[rel=preload]`);
         var $async = eval(attrs.loadByAsync || false);
         scope.$root.$broadcast('contentLoad');
         var templatePath = attrs.contentInclude;
