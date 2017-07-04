@@ -472,4 +472,30 @@ angular.module('sctPlugin')
         };
     }
 ])
+.directive('validatorFunc', [
+    function() {
+        return {
+            scope: {
+                validatorFunc: '&'
+            },
+            restrict: 'A',
+            require: 'ngModel',
+            link: function(scope, element, attrs, ngModel) {
+                console.log(`Usage:
+                    <input
+                        validator-func="validatorTest(form)"
+                        ng-init="form.msisdn = ''"
+                        ... />
+                `);
+
+                scope.$watch(function(){
+                    return scope.validatorFunc();
+                }, function(newValue, oldValue){
+                    console.log(newValue, oldValue);
+                    ngModel.$setValidity(attrs.ngModel, newValue)
+                }, true);
+            }
+        };
+    }
+])
 ;
