@@ -472,27 +472,33 @@ angular.module('sctPlugin')
         };
     }
 ])
-.directive('validatorFunc', [
+.directive('invalidatorFunc', [
     function() {
         return {
             scope: {
-                validatorFunc: '&'
+                invalidatorFunc: '&'
             },
             restrict: 'A',
             require: 'ngModel',
             link: function(scope, element, attrs, ngModel) {
-                console.log(`Usage:
+                console.log(`Usage - Return Error Message When Invalid Case:
                     <input
-                        validator-func="validatorTest(form)"
+                        invalidator-func="invalidatorTest(form)"
                         ng-init="form.msisdn = ''"
                         ... />
+                    P.S 亦可搭配 form[ngSubmit=func()] button[type=submit] 來設計.
                 `);
 
                 scope.$watch(function(){
-                    return scope.validatorFunc();
+                    return scope.invalidatorFunc();
                 }, function(newValue, oldValue){
                     console.log(newValue, oldValue);
-                    ngModel.$setValidity(attrs.ngModel, newValue)
+                    ngModel.$setValidity(attrs.ngModel, !newValue)
+                    console.log(newValue);
+                    if(!!newValue)
+                        element[0].setCustomValidity(newValue);
+                    else
+                        element[0].setCustomValidity('');
                 }, true);
             }
         };
