@@ -41,10 +41,10 @@ var PaginatorFuncPrototype = function($root){
     return {
         lastQuery: {
             params: {
-                offset: 1,
+                offset: 0,
                 limit: $root.queryConfig.pageSize,
-                sort: null,
-                orderByType: 'asc' // 'desc'
+                orderBy: null,
+                orderType: 'asc' // 'desc'
             },
             success: null,
         },
@@ -63,15 +63,18 @@ var PaginatorFuncPrototype = function($root){
             //     success(resp);
             // }, $root.errorHandle);
         },
-        reloadBySort: function(field){
-            this.lastQuery.params.sort = field;
-            if(this.lastQuery.params.orderByType === 'asc'){
-                this.lastQuery.params.orderByType = 'desc';
+        orderBy: function(field, pageInfo){
+            this.lastQuery.params.orderBy = field;
+            if(this.lastQuery.params.orderType === 'asc'){
+                this.lastQuery.params.orderType = 'desc';
             }
             else{
-                this.lastQuery.params.orderByType = 'asc';
+                this.lastQuery.params.orderType = 'asc';
             };
-            this.page(1);
+            if(pageInfo.currentPageNo !== 1)
+                pageInfo.currentPageNo = 1;
+            else
+                this.page(0);
         },
         refresh: function(){
             this.inquiry(this.lastQuery.params, this.lastQuery.success, this.lastQuery.error || $root.errorHandler);
@@ -83,17 +86,16 @@ var PaginatorFuncPrototype = function($root){
         reset: function(){
             this.lastQuery = {
                 params: {
-                    offset: 1,
+                    offset: 0,
                     limit: $root.queryConfig.pageSize,
-                    sort: null,
-                    orderByType: 'asc' // 'desc'
+                    orderBy: null,
+                    orderType: 'asc' // 'desc'
                 },
                 success: null,
             };
         }
     };
 };
-
 
 console.debug("\
         PaginatorFuncPrototype 使用說明 & 範例：\n\
