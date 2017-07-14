@@ -64,6 +64,7 @@ var PaginatorFuncPrototype = function($root){
             // }, $root.errorHandle);
         },
         orderBy: function(field, pageInfo){
+            this.lastQuery.params = $.extend({}, this.lastQuery.params);
             this.lastQuery.params.orderBy = field;
             if(this.lastQuery.params.orderType === 'asc'){
                 this.lastQuery.params.orderType = 'desc';
@@ -77,9 +78,11 @@ var PaginatorFuncPrototype = function($root){
                 this.page(0);
         },
         refresh: function(){
+            this.lastQuery.params = $.extend({}, this.lastQuery.params);
             this.inquiry(this.lastQuery.params, this.lastQuery.success, this.lastQuery.error || $root.errorHandler);
         },
         page: function(pageNo){
+            this.lastQuery.params = $.extend({}, this.lastQuery.params);
             this.lastQuery.params.offset = pageNo;
             this.inquiry(this.lastQuery.params, this.lastQuery.success, this.lastQuery.error || $root.errorHandler);
         },
