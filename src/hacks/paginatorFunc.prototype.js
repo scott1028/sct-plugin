@@ -77,13 +77,15 @@ var PaginatorFuncPrototype = function($root){
             else
                 this.page(0);
         },
-        refresh: function(){
+        refresh: function(offset){
             this.lastQuery.params = $.extend({}, this.lastQuery.params);
+            if(offset !== undefined)
+                this.lastQuery.params.offset = offset;
             this.inquiry(this.lastQuery.params, this.lastQuery.success, this.lastQuery.error || $root.errorHandler);
         },
-        page: function(pageNo){
+        page: function(offset){
             this.lastQuery.params = $.extend({}, this.lastQuery.params);
-            this.lastQuery.params.offset = pageNo;
+            this.lastQuery.params.offset = offset;
             this.inquiry(this.lastQuery.params, this.lastQuery.success, this.lastQuery.error || $root.errorHandler);
         },
         reset: function(){
