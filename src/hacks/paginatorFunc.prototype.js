@@ -82,11 +82,13 @@ var PaginatorFuncPrototype = function($root){
             if(offset !== undefined)
                 this.lastQuery.params.offset = offset;
             this.inquiry(this.lastQuery.params, this.lastQuery.success, this.lastQuery.error || $root.errorHandler);
+            // 不會幫忙更新 pageInfo.currentPageNo 要記得自己做
         },
         page: function(offset){
             this.lastQuery.params = $.extend({}, this.lastQuery.params);
             this.lastQuery.params.offset = offset;
             this.inquiry(this.lastQuery.params, this.lastQuery.success, this.lastQuery.error || $root.errorHandler);
+            // 不會幫忙更新 pageInfo.currentPageNo 要記得自己做
         },
         reset: function(){
             this.lastQuery = {
