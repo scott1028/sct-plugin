@@ -492,9 +492,9 @@ angular.module('sctPlugin')
                 scope.$watch(function(){
                     return scope.invalidatorFunc();
                 }, function(newValue, oldValue){
-                    console.log(newValue, oldValue);
+                    console.log(`Before ngModel.$setValidity`, newValue, oldValue);
                     ngModel.$setValidity(attrs.ngModel, !newValue)
-                    console.log(newValue);
+                    console.log(`After ngModel.$setValidity`, newValue);
                     if(!!newValue)
                         element[0].setCustomValidity(newValue);
                     else
