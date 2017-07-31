@@ -487,6 +487,7 @@ angular.module('sctPlugin')
                         ng-init="form.msisdn = ''"
                         ... />
                     P.S 亦可搭配 form[ngSubmit=func()] button[type=submit] 來設計.
+                    P.S 直接使用沒問題, 已知 Issue: 搭配 $ngBootBox 重複 Hide/Display UI 會造成 $watch 註冊多個.
                 `);
 
                 scope.$watch(function(){
