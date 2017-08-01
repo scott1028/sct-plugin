@@ -489,6 +489,21 @@ angular.module('sctPlugin')
                     P.S 亦可搭配 form[ngSubmit=func()] button[type=submit] 來設計.
                     P.S 直接使用沒問題, 已知 Issue: 搭配 $ngBootBox 重複 Hide/Display UI 會造成 $watch 註冊多個.
                         建議搭配 $scope.$new(false); 註冊新的 $scope.$$subScope 於重新顯示 ngBootBox 的時候調用 $$subScope.$destroy() 註銷所有 Watcher!
+
+                    *搭配 ngBootBoox Template 使用注意事項:
+                        $ngBootbox.customDialog({
+                            templateUrl: 'masterIdModel-detail',
+                            className: 'masterIdModel-detail ssd-platform',
+                            title: 'Master ID Model Detail',
+                            scope: $scope.$new(false),  // create new $subScope
+                            onEscape: function(){
+                                /* 
+                                 * Force destroy all $subScope.$watchers which are created before
+                                 * by ng-Directive & customDirective(ex: invalidatorFunc).
+                                 */
+                                this.find('.ng-scope:first').scope().$destroy();
+                            }
+                        });
                 `);
 
                 scope.$watch(function(){
