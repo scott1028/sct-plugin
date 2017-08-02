@@ -244,3 +244,15 @@ function createWorker(script, isURL){
     // >> Invoke worker.terminate() when it is no use.
     return worker;
 }
+
+// Object to X-WWW-Form-Urlencoded
+if(Object.prototype.ToUrlencoded === undefined){
+    Object.prototype.ToUrlencoded = function(obj){
+        var str = [];
+        for(var p in obj)
+            if (obj.hasOwnProperty(p)) {
+                str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+            }
+        return str.join("&");
+    }
+}
