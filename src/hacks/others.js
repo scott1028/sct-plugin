@@ -246,15 +246,12 @@ function createWorker(script, isURL){
 }
 
 // Object to X-WWW-Form-Urlencoded
-if(Object.prototype.ToUrlencoded === undefined){
-    Object.prototype.ToUrlencoded = function(obj){
-        if(obj === undefined)
-            obj = this;
-        var str = [];
-        for(var p in obj)
-            if (obj.hasOwnProperty(p)) {
-                str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
-            }
-        return str.join("&");
+function ToUrlencoded(obj){
+    var str = [];
+    for(var p in obj){
+        if (obj.hasOwnProperty(p)) {
+            str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+        }
     }
+    return str.join("&");
 }
