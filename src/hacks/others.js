@@ -255,3 +255,11 @@ function ToUrlencoded(obj){
     }
     return str.join("&");
 }
+
+// Covert Number: 3 to String: "000003" Util
+Number.prototype.$$asString = function(len){
+    let prefix = '';
+    for(var i = 0; i < len; i++)
+        prefix += '0';
+    return (prefix + this.toString()).slice(-1 * len);
+};
