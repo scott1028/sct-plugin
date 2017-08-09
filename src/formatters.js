@@ -92,7 +92,7 @@ angular.module('sctPlugin')
         require: 'ngModel',
         link: function (scope, element, attrs, ngModelCtrl) {
             console.debug('Please use new-maxlength instead of native maxlength.');
-            throw new Error('Do not use maxlength for ngModel.');
+            console.warn('Do not use maxlength for ngModel.');
         }
     };
 })
