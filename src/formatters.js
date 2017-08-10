@@ -416,7 +416,6 @@ angular.module('sctPlugin')
                             return emptyValue;
                         return parseFloat(value);
                     })();
-                    // if(value !== val) ngModel.$setViewValue(val);
                     return val;
                 });
 
@@ -424,9 +423,9 @@ angular.module('sctPlugin')
                     let val = (function(){
                         if(value === emptyValue || value === '' || value === undefined)
                             return emptyValue;
-                        return '' + value;
+                        return Number(value);
                     })();
-                    // if(value !== val) ngModel.$setViewValue(val);
+                    ngModel.$setViewValue(val);
                     return val;
                 });
             }
@@ -447,7 +446,6 @@ angular.module('sctPlugin')
                             return emptyValue;
                         return '' + value;
                     })();
-                    // if(value !== val) ngModel.$setViewValue(val);
                     return val;
                 });
                 
@@ -455,9 +453,9 @@ angular.module('sctPlugin')
                     let val = (function(){
                         if(value === emptyValue || value === '' || value === undefined)
                             return emptyValue;
-                        return parseFloat(value);
+                        return String(parseFloat(value));
                     })();
-                    // if(value !== val) ngModel.$setViewValue(val);
+                    ngModel.$setViewValue(val);
                     return val;
                 });
             }
@@ -478,7 +476,6 @@ angular.module('sctPlugin')
                             return emptyValue;
                         return '' + value;
                     })();
-                    // if(value !== val) ngModel.$setViewValue(val);
                     return val;
                 });
                 
@@ -488,7 +485,7 @@ angular.module('sctPlugin')
                             return emptyValue;
                         return '' + value;
                     })();
-                    // if(value !== val) ngModel.$setViewValue(val);
+                    ngModel.$setViewValue(val);
                     return val;
                 });
             }
