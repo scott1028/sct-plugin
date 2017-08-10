@@ -416,7 +416,7 @@ angular.module('sctPlugin')
                             return emptyValue;
                         return parseFloat(value);
                     })();
-                    ngModel.$setViewValue(val);
+                    // if(value !== val) ngModel.$setViewValue(val);
                     return val;
                 });
 
@@ -426,7 +426,7 @@ angular.module('sctPlugin')
                             return emptyValue;
                         return '' + value;
                     })();
-                    ngModel.$setViewValue(val);
+                    // if(value !== val) ngModel.$setViewValue(val);
                     return val;
                 });
             }
@@ -447,7 +447,7 @@ angular.module('sctPlugin')
                             return emptyValue;
                         return '' + value;
                     })();
-                    ngModel.$setViewValue(val);
+                    // if(value !== val) ngModel.$setViewValue(val);
                     return val;
                 });
                 
@@ -457,7 +457,7 @@ angular.module('sctPlugin')
                             return emptyValue;
                         return parseFloat(value);
                     })();
-                    ngModel.$setViewValue(val);
+                    // if(value !== val) ngModel.$setViewValue(val);
                     return val;
                 });
             }
@@ -478,7 +478,7 @@ angular.module('sctPlugin')
                             return emptyValue;
                         return '' + value;
                     })();
-                    ngModel.$setViewValue(val);
+                    // if(value !== val) ngModel.$setViewValue(val);
                     return val;
                 });
                 
@@ -488,7 +488,7 @@ angular.module('sctPlugin')
                             return emptyValue;
                         return '' + value;
                     })();
-                    ngModel.$setViewValue(val);
+                    // if(value !== val) ngModel.$setViewValue(val);
                     return val;
                 });
             }
