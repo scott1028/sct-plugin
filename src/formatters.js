@@ -410,17 +410,24 @@ angular.module('sctPlugin')
             priority: 1000,
             link: function(scope, element, attrs, ngModel) {
                 var emptyValue = scope.$eval(attrs.stringToNumber);
-
                 ngModel.$parsers.push(function(value) {
-                    if(value === emptyValue || value === '' || value === undefined)
-                        return emptyValue;
-                    return parseFloat(value);
+                    let val = (function(){
+                        if(value === emptyValue || value === '' || value === undefined)
+                            return emptyValue;
+                        return parseFloat(value);
+                    })();
+                    ngModel.$setViewValue(val);
+                    return val;
                 });
 
                 ngModel.$formatters.push(function(value) {
-                    if(value === emptyValue || value === '' || value === undefined)
-                        return emptyValue;
-                    return '' + value;
+                    let val = (function(){
+                        if(value === emptyValue || value === '' || value === undefined)
+                            return emptyValue;
+                        return '' + value;
+                    })();
+                    ngModel.$setViewValue(val);
+                    return val;
                 });
             }
         };
@@ -435,15 +442,23 @@ angular.module('sctPlugin')
                 var emptyValue = scope.$eval(attrs.numberToString);
 
                 ngModel.$parsers.push(function(value) {
-                    if(value === emptyValue || value === '' || value === undefined)
-                        return emptyValue;
-                    return '' + value;
+                    let val = (function(){
+                        if(value === emptyValue || value === '' || value === undefined)
+                            return emptyValue;
+                        return '' + value;
+                    })();
+                    ngModel.$setViewValue(val);
+                    return val;
                 });
                 
                 ngModel.$formatters.push(function(value) {
-                    if(value === emptyValue || value === '' || value === undefined)
-                        return emptyValue;
-                    return parseFloat(value);
+                    let val = (function(){
+                        if(value === emptyValue || value === '' || value === undefined)
+                            return emptyValue;
+                        return parseFloat(value);
+                    })();
+                    ngModel.$setViewValue(val);
+                    return val;
                 });
             }
         };
@@ -458,15 +473,23 @@ angular.module('sctPlugin')
                 var emptyValue = scope.$eval(attrs.stringToString);
 
                 ngModel.$parsers.push(function(value) {
-                    if(value === emptyValue || value === '' || value === undefined)
-                        return emptyValue;
-                    return '' + value;
+                    let val = (function(){
+                        if(value === emptyValue || value === '' || value === undefined)
+                            return emptyValue;
+                        return '' + value;
+                    })();
+                    ngModel.$setViewValue(val);
+                    return val;
                 });
                 
                 ngModel.$formatters.push(function(value) {
-                    if(value === emptyValue || value === '' || value === undefined)
-                        return emptyValue;
-                    return '' + value;
+                    let val = (function(){
+                        if(value === emptyValue || value === '' || value === undefined)
+                            return emptyValue;
+                        return '' + value;
+                    })();
+                    ngModel.$setViewValue(val);
+                    return val;
                 });
             }
         };
