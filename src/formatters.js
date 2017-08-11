@@ -426,6 +426,7 @@ angular.module('sctPlugin')
                         return Number(value);
                     })();
                     ngModel.$setViewValue(val);
+                    ngModel.$render();
                     return val;
                 });
             }
@@ -456,6 +457,7 @@ angular.module('sctPlugin')
                         return String(parseFloat(value));
                     })();
                     ngModel.$setViewValue(val);
+                    ngModel.$render();
                     return val;
                 });
             }
@@ -486,6 +488,7 @@ angular.module('sctPlugin')
                         return '' + value;
                     })();
                     ngModel.$setViewValue(val);
+                    ngModel.$render();
                     return val;
                 });
             }
