@@ -426,10 +426,8 @@ angular.module('sctPlugin')
                         return Number(value);
                     })();
                     ngModel.$modelValue = val;  // 確保 $modelValue 同步
-                    ngModel.$setViewValue(val);  // 確保 $viewValue 同步
                     ngModel.$$writeModelToScope();  // 寫入當下的 ngModel of scope
-                    ngModel.$render();  // 畫面同步
-                    return val;
+                    return val;  // pipe to $viewValue
                 });
             }
         };
@@ -459,10 +457,8 @@ angular.module('sctPlugin')
                         return String(parseFloat(value));
                     })();
                     ngModel.$modelValue = val;  // 確保 $modelValue 同步
-                    ngModel.$setViewValue(val);  // 確保 $viewValue 同步
                     ngModel.$$writeModelToScope();  // 寫入當下的 ngModel of scope
-                    ngModel.$render();  // 畫面同步
-                    return val;
+                    return val;  // pipe to $viewValue
                 });
             }
         };
@@ -492,10 +488,8 @@ angular.module('sctPlugin')
                         return '' + value;
                     })();
                     ngModel.$modelValue = val;  // 確保 $modelValue 同步
-                    ngModel.$setViewValue(val);  // 確保 $viewValue 同步
                     ngModel.$$writeModelToScope();  // 寫入當下的 ngModel of scope
-                    ngModel.$render();  // 畫面同步
-                    return val;
+                    return val;  // pipe to $viewValue
                 });
             }
         };
