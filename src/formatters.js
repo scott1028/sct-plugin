@@ -405,31 +405,30 @@ angular.module('sctPlugin')
 ])
 .directive('stringToNumber', [
     function() {
+        let getValue = function(emptyValue, value){
+            let val = (function(){
+                if(value === emptyValue || value === '' || value === undefined)
+                    return emptyValue;
+                return Number(value);
+            })();
+            if(isNaN(val)) return emptyValue;
+            return val;
+        };
         return {
             require: 'ngModel',
             priority: 1000,
             link: function(scope, element, attrs, ngModel) {
                 var emptyValue = scope.$eval(attrs.stringToNumber);
                 ngModel.$parsers.push(function(value) {
-                    let val = (function(){
-                        if(value === emptyValue || value === '' || value === undefined)
-                            return emptyValue;
-                        return parseFloat(value);
-                    })();
+                    let val = getValue(emptyValue, value);
                     return val;
                 });
 
                 ngModel.$formatters.push(function(value) {
-                    let val = (function(){
-                        if(value === emptyValue || value === '' || value === undefined)
-                            return emptyValue;
-                        return Number(value);
-                    })();
+                    let val = getValue(emptyValue, value);
                     ngModel.$modelValue = val;  // 確保 $modelValue 同步
-                    ngModel.$setViewValue(val);  // 確保 $viewValue 同步
                     ngModel.$$writeModelToScope();  // 寫入當下的 ngModel of scope
-                    ngModel.$render();  // 畫面同步
-                    return val;
+                    return val;  // pipe to $viewValue
                 });
             }
         };
@@ -456,13 +455,11 @@ angular.module('sctPlugin')
                     let val = (function(){
                         if(value === emptyValue || value === '' || value === undefined)
                             return emptyValue;
-                        return String(parseFloat(value));
+                        return String(Number(value));
                     })();
                     ngModel.$modelValue = val;  // 確保 $modelValue 同步
-                    ngModel.$setViewValue(val);  // 確保 $viewValue 同步
                     ngModel.$$writeModelToScope();  // 寫入當下的 ngModel of scope
-                    ngModel.$render();  // 畫面同步
-                    return val;
+                    return val;  // pipe to $viewValue
                 });
             }
         };
@@ -470,6 +467,14 @@ angular.module('sctPlugin')
 ])
 .directive('stringToString', [ 
     function() {
+        let getValue = function(emptyValue, value){
+            let val = (function(){
+                if(value === emptyValue || value === '' || value === undefined)
+                    return emptyValue;
+                return '' + value;
+            })();
+            return val;
+        };
         return {
             require: 'ngModel',
             priority: 1000,
@@ -477,25 +482,15 @@ angular.module('sctPlugin')
                 var emptyValue = scope.$eval(attrs.stringToString);
 
                 ngModel.$parsers.push(function(value) {
-                    let val = (function(){
-                        if(value === emptyValue || value === '' || value === undefined)
-                            return emptyValue;
-                        return '' + value;
-                    })();
+                    let val = getValue(emptyValue, value);
                     return val;
                 });
                 
                 ngModel.$formatters.push(function(value) {
-                    let val = (function(){
-                        if(value === emptyValue || value === '' || value === undefined)
-                            return emptyValue;
-                        return '' + value;
-                    })();
+                    let val = getValue(emptyValue, value);
                     ngModel.$modelValue = val;  // 確保 $modelValue 同步
-                    ngModel.$setViewValue(val);  // 確保 $viewValue 同步
                     ngModel.$$writeModelToScope();  // 寫入當下的 ngModel of scope
-                    ngModel.$render();  // 畫面同步
-                    return val;
+                    return val;  // pipe to $viewValue
                 });
             }
         };
