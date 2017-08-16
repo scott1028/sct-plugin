@@ -609,11 +609,14 @@ angular.module('sctPlugin')
 
             // by getterSetter to avoid ceil & floor value
             $scope.data.$$currentPageNo = function(val){
+                if(val === 0)
+                    return $scope.data.currentPageNo = 1
+                if($scope.data.totalPage === 0)
+                    return $scope.data.currentPageNo = 1
                 if(val === undefined)
                     return $scope.data.currentPageNo;
-                if(val > $scope.data.totalPage - 1){
+                if(val > $scope.data.totalPage - 1)
                     return $scope.data.currentPageNo = $scope.data.totalPage;
-                }
                 if(val < 0)
                     return $scope.data.currentPageNo = 1;
                 return $scope.data.currentPageNo = val;
