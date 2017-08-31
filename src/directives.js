@@ -728,4 +728,22 @@ angular.module('sctPlugin')
         '    </style>' +
         '</div>');
 }])
+.directive('captureClick', function($parse){
+    return {
+        restrict: 'A',
+        compile: function(element, attrs){
+            var fn = $parse(attrs.captureClick);
+            return function(scope, element){
+                element[0].addEventListener('click', function(e){
+                    scope.$apply(function(){
+                        e.stopImmediatePropagation();
+                        fn(scope, {
+                            $event: e
+                        });
+                    });
+                }, true);
+            };
+        }
+    }
+})
 ;
