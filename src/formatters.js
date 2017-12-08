@@ -71,9 +71,11 @@ angular.module('sctPlugin')
                 if(text === null || text === undefined) text = '';
                 if (text.toString().length > maxlength) {
                     var transformedInput = text.toString().substring(0, maxlength);
-                    ngModelCtrl.$setViewValue(transformedInput);
-                    ngModelCtrl.$render();
-                    setSelectionRange(e.target, cp, cp);
+                    scope.$applyAsync(function(){
+                        ngModelCtrl.$setViewValue(transformedInput);
+                        ngModelCtrl.$render();
+                        setSelectionRange(e.target, cp, cp);
+                    });
                 };
             });
             if(!truncateNgModel)
