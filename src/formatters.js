@@ -71,11 +71,21 @@ angular.module('sctPlugin')
                 if(text === null || text === undefined) text = '';
                 if (text.toString().length > maxlength) {
                     var transformedInput = text.toString().substring(0, maxlength);
-                    scope.$applyAsync(function(){
-                        ngModelCtrl.$setViewValue(transformedInput);
-                        ngModelCtrl.$render();
-                        setSelectionRange(e.target, cp, cp);
-                    });
+                    ngModelCtrl.$setViewValue(transformedInput);
+                    ngModelCtrl.$render();
+                    setSelectionRange(e.target, cp, cp);
+                    // force remove no use class
+                    if(angular.equals(ngModelCtrl.$error, {})){
+                        scope.$evalAsync(function(){
+                            setTimeout(function(){
+                                element.removeClass(function(index, className){
+                                    return className.split(' ').filter(function(row){
+                                        return row.startsWith('ng-invalid');
+                                    }).join(' ');
+                                });
+                            });
+                        });
+                    }
                 };
             });
             if(!truncateNgModel)
